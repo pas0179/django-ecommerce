@@ -49,11 +49,13 @@ class ProfileEditForm(forms.ModelForm):
             "genre",
             "date_of_birth",
             "address_primary",
+            "complement_adress_primary",
             "postal_code_primary",
             "city_primary",
             "phoneNumber1",
             "phoneNumber2",
             "address_secondery",
+            "complement_adress_secondary",
             "postal_code_secondery",
             "city_secondery",            
         ]

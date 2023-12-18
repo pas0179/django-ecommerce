@@ -37,7 +37,7 @@
           <table>
             <tr>
               <th>Genre: </th>
-              <td>{{ profile_form.genre }}</td>
+              <td> {{ profile_form.genre }}</td>
             </tr>
             <tr>
           </table>
@@ -70,7 +70,11 @@
           <table>
             <tr>
               <th>Adresse:</th>
-              <td>{{ profile_form.address_primary }}</td>
+              <td style="padding: 5px;">{{ profile_form.address_primary }}</td>
+            </tr>
+            <tr>
+              <th>Complement-Adresse:</th>
+              <td>{{ profile_form.complement_adress_primary }}</td>
             </tr>
             <tr>
               <th>Code postal:</th>
@@ -86,6 +90,10 @@
             <tr>
               <th>Adresse:</th>
               <td>{{ profile_form.address_secondery }}</td>
+            </tr>
+            <tr>
+              <th>Complement-Adresse:</th>
+              <td>{{ profile_form.complement_adress_secondary }}</td>
             </tr>
             <tr>
               <th>Code postal:</th>

@@ -35,7 +35,7 @@ a {
 }
 
 a:hover {
-    color: #dbae5f;
+    color: #000000;
 }
 
 a::before {
@@ -47,8 +47,8 @@ a::before {
     width: 0%;
     content: '';
     color: transparent;
-    background: linear-gradient(45deg, #fdfdfd, #f8cd82);
-    height: 1px;
+    background: black;
+    height: 0px;
     transition: all 0.3sec;
 }
 
@@ -394,7 +394,8 @@ a:hover::before {
     margin-right: auto;
 }
 #edit-compte .group .block {
-    width: 100%;
+    width: 90%;
+    padding: 40px;
     display: flex;
     flex-wrap: wrap;
     font-size: 15px;
@@ -624,5 +625,16 @@ a:hover::before {
 #form-contact .corps-formulaire form textarea {
     padding: 10px;
 }
+
+/* Order create ***************************************************/
+#order-create {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+#order-create form {
+    justify-content: center;
+}
+
 
 

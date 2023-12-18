@@ -76,7 +76,10 @@
                         </ul>
                     </li>
                     {% if request.user.is_authenticated %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}#dashboard">compte</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}#dashboard">compte</a></li>
+                        {% if cart %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'add_order' %}">commande-en-cours</a></li>
+                        {% endif %}
                     {% endif %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}#form-contact">contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="">infos</a></li>

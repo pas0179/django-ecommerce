@@ -174,7 +174,7 @@ $(document).on('click', '.update-button', function (e) {
         document.getElementById("cart_quantity").innerHTML = json.quantity;
         document.getElementById("subtotal").innerHTML = json.subtotal;
         document.getElementById("total").innerHTML = total;
-        location.reload();
+        // location.reload();
       },
       error: function (xhr, errmsg, err) {}
     });

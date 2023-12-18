@@ -14,3 +14,5 @@ def calcul_stock():
 
     for val in lst_prod:
         products.filter(id=val[0]).update(quantity=val[1])
+    
+    

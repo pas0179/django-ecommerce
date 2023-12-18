@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .cart import Cart
 from product.models import Product
+from django.contrib import messages
 
 from django.http import JsonResponse
 
@@ -27,18 +28,32 @@ def cart_add(request):
 
 		# Recherche du produit dans la base de données
 		product = get_object_or_404(Product, id=product_id)
-		
-		# Sauvegarde dans la session
-		cart.add(product=product, quantity=product_qty)
 
-		# Récup de quantité d'articles dans le panier
-		cart_quantity = cart.__len__()
+		if product.available:
+			if product_qty <= product.quantity:
 
-		# Return resonse
-		# response = JsonResponse({'Product Name: ': product.name})
-		response = JsonResponse({'qty': cart_quantity})
-		return response
-	
+				# Sauvegarde dans la session
+				cart.add(product=product, quantity=product_qty)
+
+				# Récup de quantité d'articles dans le panier
+				cart_quantity = cart.__len__()
+
+				# Return resonse
+				# response = JsonResponse({'Product Name: ': product.name})
+				message = "Produit ajouté dans votre panier"
+				response = JsonResponse({'qty': cart_quantity, "message": message})
+				return response
+			
+			else:
+				message = "La quantité selectionné est supérieur a la quantité disponible ..."
+				response = JsonResponse({"message": message})
+				return response
+			
+		else:
+			message = "Désolé, le produit n'est plus disponible ..."
+			response = JsonResponse({"message": message})
+			return response
+			
 
 
 def cart_delete(request):

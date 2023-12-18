@@ -101,7 +101,7 @@
             success: function(json){
                 // console.log(json)
                 document.getElementById("cart_quantity").textContent = json.qty
-                document.getElementById("cart-info").innerHTML = "Un produit(s) a été ajouté a votre panier";
+                document.getElementById("cart-info").innerHTML = json.message;
             },
     
             error: function(xhr, errmsg, err){
