@@ -1,0 +1,628 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: linear-gradient(90deg, #d8c5a3, #e9ded0);
+    padding: 0px;
+    margin: 0px;
+}
+
+h1 {
+    font-size: 23px;
+}
+h2 {
+    font-size: 20px;
+}
+h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+    font-weight: 600;
+}
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    position: relative;
+}
+
+a:hover {
+    color: #dbae5f;
+}
+
+a::before {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0px;
+    margin: auto;
+    width: 0%;
+    content: '';
+    color: transparent;
+    background: linear-gradient(45deg, #fdfdfd, #f8cd82);
+    height: 1px;
+    transition: all 0.3sec;
+}
+
+a:hover::before {
+    width: 100%;
+}
+/* NavBar ******************************************************************/
+#navbar {
+    padding: 0%;
+    margin: 0%;
+    color: black;
+}
+#navbar .group {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+#navbar .group .left-section {
+    align-content: first baseline;
+    margin: 0%;
+    padding: 0%;
+    min-width: min-content;
+    max-width: max-content;
+}
+
+#navbar .group .left-section img {
+    display: block;
+    max-width: 450px;
+    min-width: 250px;
+}
+#navbar .group .center {
+    min-height: min-content;
+    max-height: max-content; 
+    margin: 0px;
+    padding: 0px;
+    margin-right: auto;
+    margin-left: auto;   
+    align-self: center; 
+}
+#navbar .group .center .text-center {
+    text-align: center;
+}
+
+#navbar .group .right-section {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: min-content;
+    max-width: max-content;
+    justify-content: space-around;
+    height: auto;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+}
+#navbar .group .right-section .user {
+    min-width: min-content;
+    max-width: max-content;
+    height: max-content;
+    padding: 20px 10px 0px 10px;
+    font-size: 15px;
+}
+#navbar .group .right-section .user a {
+    font-size: 15px;
+}
+
+/* footer ************************************************************/
+#pieds-formulaire {
+    width: 100%;
+    color: black;
+    text-align: center;
+    height: min-content;
+    margin-bottom: 0%;
+    margin-top: 0%;
+    background-size: cover;
+    background: linear-gradient(45deg, #e9ded0, #d8c5a3);
+    border: solid black 1px;
+}
+
+#pieds-formulaire  .corps-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    align-items: stretch;
+    margin: 0%;
+    padding: 0%;
+}
+
+#pieds-formulaire .corps-form .group {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#pieds-formulaire .corps-form .group h2 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#pieds-formulaire .corps-form .group .text-group1 {
+    cursor: pointer;
+    min-width: min-content;
+    max-width: max-content;
+    text-align: center;
+}
+
+#pieds-formulaire .corps-form .group .text-group2 {
+    text-align: center;
+    cursor: pointer;
+    min-width: min-content;
+    max-width: max-content;
+    padding: 0px 20px 10px 20px;
+}
+
+#pieds-formulaire .corps-form .group .text-group3 {
+    min-width: min-content;
+    max-width: max-content;
+    text-align: center;
+}
+
+#pieds-formulaire .corps-form .group .footer-link {
+    list-style: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 2px;
+    font-weight: 400;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    text-decoration: none;
+    position: relative;
+    left: -15px;
+}
+#pieds-formulaire .corps-form .group .footer-link a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    font-size: 15px;
+    position: relative;
+}
+
+/* Home page *************************/
+.home-info {
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.home-info .container {
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    justify-content: space-between;
+}
+.home-info .container .text-left {
+    align-self: center;
+}
+.home-info .container .text-right {
+    text-align: center;
+}
+.home-info .container .text-right img {
+    display: block;
+    max-width: 400px;
+    min-width: 250px;
+}
+
+/* product ************************************************************/
+#product {
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+#product .product-info {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+#product .product-info .card {
+    width: 80%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+#product .product-info .card .col-md-6 {
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+}
+
+/* Cart ****************************************************************/ 
+#cart-detail {
+    width: 100%;
+}
+#cart-detail .cart-info {
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+}
+#cart-detail .cart-info table tr {
+    display: flex;
+    flex-wrap: wrap;
+}
+#cart-detail .cart-info table th, td {
+    align-items: center;
+    display: flex;
+}
+
+#cart-detail .cart-info table {text-align: center;}
+#cart-detail .cart-info table tr td { width: 100px; justify-content: center;}
+#cart-detail .cart-info table tr td + td { width: 150px; }
+#cart-detail .cart-info table tr td + td + td { width: 200px; }
+#cart-detail .cart-info table tr td + td + td +td { width: 80px; text-align: center;}
+#cart-detail .cart-info table tr td + td + td +td +td { width: 50px; }
+#cart-detail .cart-info table tr td + td + td +td +td +td { width: 120px; }
+#cart-detail .cart-info table tr td + td + td +td +td +td +td { width: 120px; }
+    
+#cart-detail .cart-info table tr th { width: 100px;}
+#cart-detail .cart-info table tr th + th { width: 150px; }
+#cart-detail .cart-info table tr th + th + th { width: 200px; }
+#cart-detail .cart-info table tr th + th + th +th { width: 80px; text-align: center;}
+#cart-detail .cart-info table tr th + th + th +th +th { width: 50px; }
+#cart-detail .cart-info table tr th + th + th +th +th +th { width: 120px; }
+#cart-detail .cart-info table tr th + th + th +th +th +th +th { width: 120px; }
+
+
+
+/* register *************************************************************/
+#register {
+    width: 100%;
+    
+}
+#register .group {
+    margin-bottom: 40px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+
+}
+#register .group .block {
+    width: max-content;
+}
+#register .group .block .infos {
+    padding: 20px;
+}
+#register .group .block .form-register {
+    padding: 20px;
+}
+
+#register .group .block .form-register .button {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+}
+#register .group .block .form-register .form {
+    display: flex;
+}
+
+#register .group .block .form-register .form th, td {
+    font-size: 14px;
+    text-align: left;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 1.6rem;
+}
+
+#register .group .block .form-register input {
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 14px;
+    border-style: none;
+    width: 220px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+/* Edit account **************************************************************/
+#edit-compte {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: max-content;
+    margin-bottom: 50px;
+}
+#edit-compte .group {
+    width: 100%;
+}
+  
+#edit-compte .group p {
+    width: 100%;
+    margin-top: 0px;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#edit-compte .group .mail {
+    width: 100%;
+    font-size: 15px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+#edit-compte .group .mail tr {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: last baseline;
+}
+#edit-compte .group .mail th {
+    margin: 0px 0px 10px 0px;
+}
+#edit-compte .group .mail td {
+    margin-left: 40px;
+}
+#edit-compte .group .mail input {
+    border-radius: 4px;
+    padding: 2px 5px;
+    font-size: 15px;
+    border-style: none;
+    width: 220px;
+    background-color: white;
+}
+#edit-compte .group .sep {
+    width: 80%;
+    border: solid rgb(156, 3, 3) 1px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#edit-compte .group .block {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 15px;
+    justify-content: space-around;
+}
+#edit-compte .group .block h2 {
+    font-size: 15px;
+    font-weight: 600;
+}
+#edit-compte .group .block .gauche {
+    width: max-content;
+    height: max-content;
+    padding: 10px;
+}
+#edit-compte .group .block tr, th, td {
+    padding: 5px 5px 15px 5px;
+}
+#edit-compte .group .block input {
+    border-radius: 4px;
+    padding: 2px 5px;
+    font-size: 15px;
+    border-style: none;
+    width: 220px;
+    background-color: white;
+}
+#edit-compte .group .block .droite {
+    width: max-content;
+    height: max-content;
+    padding: 10px;
+}
+#edit-compte .group .button {
+    width: 100%;
+    text-align: center;
+}
+
+/* Password change ***********************************************************/
+#pass-change {
+    width: 100%;
+    margin-bottom: 50px;
+}
+#pass-change .error {
+    text-align: center;
+    font-size: 17px;
+    margin-bottom: 20px;
+}
+#pass-change .info-mdp {
+    text-align: center;
+}
+#pass-change .block {
+    margin-top: 20px;
+    width: 100%;
+}
+#pass-change .block form .mdp1 {
+    margin-left: auto;
+    margin-right: auto;
+}
+#pass-change .block th, td {
+  font-size: 15px;
+  padding: 10px;
+  text-align: left;
+}
+#pass-change .block li {
+  font-size: 15px;
+}
+#pass-change .block .mdp1 {
+  margin-bottom: 10px;
+}
+#pass-change .block .mdp1 .text {
+  margin-bottom: 10px;
+}
+#pass-change .block .mdp1 input {
+    border-radius: 4px;
+    padding: 2px 10px;
+    font-size: 15px;
+    border: none;
+    width: 220px;
+    background-color: white;
+}
+#pass-change .block .button {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+}
+/*pass-change-done *****************************************************/
+#pass-change-done {
+    width: 100%;
+    text-align: center;
+}
+
+/*Reset-mdp *********************************************************/
+#reset-mdp {
+    width: 100%;
+    margin-bottom: 50px;
+}
+#reset-mdp p {
+    font-size: 17px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+#reset-mdp .group {
+    width: 50%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#reset-mdp .group form {
+    width: max-content;
+    padding: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#reset-mdp .group form .info {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+#reset-mdp .group form .info th, td {
+    padding: 11px;
+}
+#reset-mdp .group form .info td input {
+    padding: 2px 5px 2px 5px;
+    width: 250px;
+    border-radius: 4px;
+    font-size: 15px;
+    height: 35px;
+}
+
+/*Reset-mdp done ***************************************/
+#reset-done {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+#reset-done .info {
+    text-align: center;
+    font-size: 15px;
+    padding: 40px;
+    margin-top: 30px;
+}
+
+/*Reset-confirm ******************************************************/
+#reset_confirm {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+#reset-confirm .group {
+    width: max-content;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#reset-confirm .group form td input {
+    padding: 2px 5px 2px 5px;
+    width: 250px;
+    border-radius: 4px;
+    font-size: 15px;
+    height: 35px;
+}
+#reset-confirm .group .button {
+    text-align: center;
+    padding: 30px;
+}
+
+#reset-confirm-done {
+    width: 100%;
+    height: max-content;
+    margin-bottom: 30px;
+}
+#reset-confirm-done .group {
+    padding: 40px;
+    text-align: center;
+}
+
+
+/*contact-form ******************************************************/
+#form-contact {
+    width: 100%;
+    height: max-content;
+    margin-bottom: 50px;
+}
+#form-contact h3 {
+    margin-top: 20px;
+    text-align: center;
+}
+#form-contact .corps-formulaire {
+    width: 100%;
+    margin-top: 20px;
+    justify-content: center;
+}
+#form-contact .corps-formulaire form {
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#form-contact .corps-formulaire form th, td {
+    padding-top: 15px;
+}
+
+#form-contact .corps-formulaire form .gauche i {
+    position: absolute;
+    padding: 8px 8px;
+    color: #9b0404;
+}
+#form-contact .corps-formulaire form .gauche td input {
+    padding: 2px 5px 2px 30px;
+    width: 250px;
+    border-radius: 4px;
+    font-size: 15px;
+    height: 35px;
+}
+
+#form-contact .corps-formulaire form h4 {
+    margin-top: 10px; 
+}
+#form-contact .corps-formulaire form textarea {
+    padding: 10px;
+}
+
+

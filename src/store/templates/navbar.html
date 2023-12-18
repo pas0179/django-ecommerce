@@ -1,0 +1,91 @@
+{% load static %}
+{% block css %}
+    <!-- Integration du fichier style.css -->
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'css/style.css' %}">
+{% endblock css %}
+
+<!--Début de la navbar-->
+<div id="navbar">
+    <div class="group">
+        <div class="left-section">
+            <img src="{% static 'assets/logo.jpg' %}" alt="logo"></image>
+        </div>        
+        <div class="center">
+            <div class="text-center">
+                <h1>& ESPRIT SHABBY CHIC &</h1>
+                <h2>Bienvenue sur la boutique Déco de stéphanie</h2>
+            </div>                      
+        </div>
+        <div class="right-section">  
+            <div class="user">
+                {% if request.user.is_authenticated %}
+                    <p>
+                        Bonjour {{ request.user.first_name|default:request.user.username }}, 
+                        <a href='{% url "logout" %}#navbar'>Deconnecter-vous</a>
+                    </p>
+                {% else %}
+                    <p>
+                        <a href='{% url "login" %}#nav'>Connecter-vous</a>
+                    </p>           
+                {% endif %}                 
+            </div>             
+            <form class="d-flex" style="margin-bottom: 20px;">
+    
+                <a href="{% url 'cart_detail' %}" class="btn btn-outline-dark"><i class="fa-solid fa-cart-shopping"></i>
+                                    Panier
+                {% with total_qty=cart|length %}
+                <span class="badge bg-dark text-white ms-1 rounded-pill" id="cart_quantity">
+                    <!--{{ cart.quantity_product_cart }}-->
+                    {% if total_qty > 0 %}
+                        {{ total_qty }}
+                    {% else %}
+                        0
+                    {% endif %}
+                </span></a>
+                {% endwith%}
+            </form>
+        </div>
+    </div>
+</div>
+<div id="nav">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="{% url 'home' %}" style="font-style: oblique;">SANNCHA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">accueil</a></li>
+                    
+    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">catégories</a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'category' 'all' %}#py-5">tous les produits</a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item" href="{% url 'category' 'deco-noel' %}#py-5">Déco-noel</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category' 'boite-a-dents' %}#py-5">Boite à dents</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category' 'couronne' %}#py-5">Couronne</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category' 'marque-page' %}#py-5">Marque-page</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category' 'porte-cle' %}#py-5">Porte-clé</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category' 'porte-bijoux' %}#py-5">Porte-bijoux</a></li>   
+                            <li><a class="dropdown-item" href="{% url 'category' 'boule-frou-frou' %}#py-5">Boule frou-frou</a></li>                     
+                            <li><a class="dropdown-item" href="{% url 'category' 'divers' %}#py-5">Divers</a></li>
+                            
+                        </ul>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}#dashboard">compte</a></li>
+                    {% endif %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}#form-contact">contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">infos</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+</div>
+
+

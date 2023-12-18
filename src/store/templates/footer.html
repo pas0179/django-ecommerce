@@ -1,0 +1,73 @@
+{% load static %}
+
+{% block css%}
+<!-- Integration du fichier style.css dans static/css/navbar.css -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+
+<!--Footer a définir-->
+<div id="pieds-formulaire">
+  <div class="corps-form">
+    <div class="group">
+      <div class="text-group1">  
+        <h5>INFORMATIONS</h5>      
+          <ul class="footer-links">
+              <li class="footer-link">
+                  <a href="">Mentions légales</a>
+              </li>
+              <li class="footer-link">
+                  <a href="">Qui-sommes-nous ?</a>
+              </li>
+              <li class="footer-link">
+                  <a href="">Protection des données</a>
+              </li>
+              <li class="footer-link">
+                  <a href="">Paiement sécurisé</a>
+              </li>
+              <li class="footer-link">
+                  <a href="">Livraison</a>
+              </li>
+              <li class="footer-link">
+                  <a href="">Retours</a>
+              </li>
+              <li class="footer-link">
+                  <a href="">Conditions générales</a>
+              </li>
+          </ul>
+      </div>
+    </div>
+    <div class="group">
+      <div class="text-group2">
+        <h5>NOUS-SUIVRE</h5>
+        <ul class="footer-links">
+          <li class="footer-link">
+              <a href="">Facebook</a>
+          </li>
+          <li class="footer-link">
+              <a href="">Instagram</a>
+          </li>
+      </ul>
+      </div>
+    </div>
+    <div class="group">
+      <div class="text-group3">
+        <h5>CONTACT</h5>
+        <ul class="footer-links">
+          <li class="footer-link">
+              SANNCHA
+          </li>
+          <li class="footer-link">
+              107, impasse des Bouvreuils
+          </li>
+          <li class="footer-link">
+              13370 MALLEMORT
+          </li>
+          <li class="footer-link">
+              <a href="">sanncha@gmail.com</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

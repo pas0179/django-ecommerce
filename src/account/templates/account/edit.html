@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<div id="edit-compte">
+  <header class="bg-dark py-1">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white-50">            
+            <h3 class="display-4 fw-bolder" style="font-size: 20px;">
+              Modifier votre compte ou <a href="{% url 'dashboard' %}#dashboard" style="color: white; font-size: 17px;">Retour</a>
+            </h3>
+        </div>
+    </div>
+  </header>
+  <br><br>
+  <div class="group">
+    <form method="post" enctype="multipart/form-data">
+      <p>
+        l'adresse mail doit correspondre a l'adresse renseigné lors de l'inscription et doit être valide.<br />
+        Cette adresse vous servira en cas d'oublie de votre mot de passe.
+      </p>
+      <table class="mail">
+        <tr>
+          <th>Votre Email: </th>
+          <td>{{ user_form.email }}</td>
+        </tr>
+      </table>
+      <div class="sep"></div>
+      <div class="block">
+        <div class="gauche">
+          <table>
+            <tr>
+              <th>Genre: </th>
+              <td>{{ profile_form.genre }}</td>
+            </tr>
+            <tr>
+          </table>
+          <h2>Informations personnelles:</h2>
+          <table>
+            <tr>
+              <th>Prénom: </th>
+              <td>{{ user_form.first_name }}</td>
+            </tr>
+            <tr>
+              <th>Nom de famillle: </th>
+              <td>{{ user_form.last_name }}</td>
+            </tr>
+            <tr>
+              <th>Date de naissance: </th>
+              <td>{{ profile_form.date_of_birth }}</td>
+            </tr>
+            <tr>
+              <th>N° Mobile:</th>
+              <td>{{ profile_form.phoneNumber1 }}</td>
+            </tr>
+            <tr>
+              <th>N° Fixe:</th>
+              <td>{{ profile_form.phoneNumber2 }}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="droite">
+          <h2>Adresse principale(1):</h2>
+          <table>
+            <tr>
+              <th>Adresse:</th>
+              <td>{{ profile_form.address_primary }}</td>
+            </tr>
+            <tr>
+              <th>Code postal:</th>
+              <td>{{ profile_form.postal_code_primary }}</td>
+            </tr>
+            <tr>
+              <th>Ville:</th>
+              <td>{{ profile_form.city_primary }}</td>
+            </tr>
+          </table>
+          <h2>Adresse livraison (si differente de adresse 1):</h2>
+          <table>
+            <tr>
+              <th>Adresse:</th>
+              <td>{{ profile_form.address_secondery }}</td>
+            </tr>
+            <tr>
+              <th>Code postal:</th>
+              <td>{{ profile_form.postal_code_secondery }}</td>
+            </tr>
+            <tr>
+              <th>Ville:</th>
+              <td>{{ profile_form.city_secondery }}</td>
+            </tr>          
+          </table>
+        </div>
+      </div>      
+      <div class="button">
+        {% csrf_token %}
+        <a href="{% url 'dashboard' %}#dashboard" class="btn btn-secondary" style="margin-right: 20px;">Annuler</a>
+        <input type="submit" value="Valider" class="btn btn-secondary">
+      </div>
+    </form>
+    {{ redirect_to_login_immediately }}
+  </div>
+</div>
+
+
+{% endblock %}

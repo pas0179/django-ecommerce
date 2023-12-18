@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+ <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<div id="order-list">
+  <div class="sidebar">
+    <h3>Commandes</h3>
+    <div class="sep"></div>
+    <ul>
+        {% if orders %}
+            <li {% if not order %}class="selected"{% endif %}>
+                <a href='{% url "order_list" %}'>Toutes les Commandes</a>
+            </li>
+                {% for val in orders %}
+                    <li class="selected">
+                    <a href="">Commande N°: {{ val.id }}</a>
+                    <ul>
+                        <li>
+                        <a href="">Date: {{ val.created }}</a>
+                        </li>
+                    </ul>
+                    </li>
+                {% endfor %}
+        {% else %}
+    </ul>
+    <ul>
+        <li>Vous n'avez pas de commande</li>
+    </ul>
+      {% endif %}
+  </div>
+  <div class="main">
+    {% if order %}
+        <h2>Liste des produits de la commande N° {{ order.id }}</h2>
+        <h2>Total: </h2>
+    {% endif %}
+    <div class="product-list">
+    {% for item in order_item %}
+        <div class="item">
+          <p class="product"><a href="">{{ item.product }}</a></p>
+          <p class="quantite">Quantité: <a href="">{{ item.quantity }}</a></p>
+          <p class="price">Prix: {{ item.price }} €</p>
+        </div>
+    {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

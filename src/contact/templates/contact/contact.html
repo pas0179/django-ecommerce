@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+<!--Formulaire de contact-->
+<div id="form-contact">
+    <header class="bg-dark py-1">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white-50">            
+                <h3 class="display-4 fw-bolder" style="font-size: 20px;">
+                  Nous contacter ...
+                </h3>
+            </div>
+        </div>
+    </header>
+    <h3>Afin de nous contacter, merci de remplir le formulaire</h3>
+
+    <div class="corps-formulaire">
+        <form method="post">        
+            <div class="gauche">
+                <table>
+                {% csrf_token %}
+                    <tr>
+                        <th>Prénom:</th>
+                        <td><i class="fa-solid fa-user"></i>{{ form.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom de famille:</th>
+                        <td><i class="fa-solid fa-user"></i>{{ form.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email:</th>
+                        <td><i class="fa-solid fa-envelope"></i>{{ form.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>N° Mobile (facultatif):</th>
+                        <td><i class="fa-solid fa-mobile"></i>{{ form.phone }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="droite">
+                <div>
+                    <h4 style="font-weight: 600;">Votre message: </h4>
+                    <span class="message">{{ form.message }} </span>          
+
+                </div>
+            </div>
+            <div class="button">
+                <a href="{% url 'home' %}" class="btn btn-secondary" style="margin-right: 40px;">Annuler</a>
+                <input type="submit" value="Valider" class="btn btn-secondary"> 
+            </div>        
+        </form>
+    </div>
+</div>
+{% endblock content %}

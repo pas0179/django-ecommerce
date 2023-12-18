@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+    <!-- Integration du fichier style.css -->
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'css/style.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+
+        <!-- Header--> 
+        <div class="home-info">
+            <header class="bg-dark py-1">
+                <div class="container">
+                    <div class="text-left" style="color: white;">
+                        
+                        <p class="lead fw-normal text-white-50 mb-0" style="font-size: 16px;">Découvrez notre collection de produits dans le style Shabby Chic,</p><br/>
+    
+                        <h3>Qu’est ce que le style Shabby Chic ?</h3>
+                        <p class="lead fw-normal text-white-50 mb-0" style="font-size: 16px;">Il s’agit d’un croisement entre les styles de décoration ancien,</p>
+                        <p class="lead fw-normal text-white-50 mb-0" style="font-size: 16px;">chic et bohème. Étymologiquement, le terme anglophone Shabby</p>
+                        <p class="lead fw-normal text-white-50 mb-0" style="font-size: 16px;">signifie « usé ». C’est justement ce côté très vintage qui fait</p>
+                        <p class="lead fw-normal text-white-50 mb-0" style="font-size: 16px;">tout le charme de la déco shabby.</p>
+                        <p class="lead fw-normal text-white-50 mb-0" style="font-size: 16px;">Découvrer nos dernieres <a href="#new-prod" style="color: white;">créations</a></p>
+    
+                    </div>
+                    <div class="text-right text-white">
+                        <img src="{% static 'assets/photo_index1.jpg' %}">
+                    </div>
+                </div>
+            </header>
+        </div>
+
+        <!-- Section-->
+        <div id="new-prod">
+            <section class="py-5">
+                <div class="container px-2 px-lg-2 mt-2">
+                    <h2 style="text-align: center; font-weight: 600; margin-bottom: 40px;">
+                        Découvrer mes derniers produits ...
+                        <a href="#navbar" style="font-size: 14px;">  haut <i class="fa-solid fa-arrow-up"></i></a>
+                    </h2>
+                    
+                    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                            
+                    {% for product in products %}
+                        {% if not product.available %}
+                         
+                        <div class="col mb-5">
+                            <div class="card h-100">
+                                <!-- Dispo ?-->
+                                <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Epuisé</div>
+    
+                                <!-- Product image-->
+                                {% if product.image %}
+                                    <img class="card-img-top" src="{{ product.image.url }}"> 
+                                {% else %}
+                                    <img class="card-img-top" src="{% static 'assets/no_image.png' %}" alt="">
+                                {% endif %}                              
+                            
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h5 class="fw-bolder">{{ product.name }}</h5>
+                                        <!-- Disponible -->
+                                        <div class="d-flex justify-content-center small text-warning mb-2">
+                                            <div class="bi-star-fill"></div>
+                                            &nbsp;&nbsp;Non Disponible!&nbsp;&nbsp;
+                                            <div class="bi-star-fill"></div>
+                                        </div>
+    
+                                        <!-- Product price-->
+                                        <strike>
+                                        {{ product.price }} €
+                                        </strike>
+                                        &nbsp;
+    
+                                    </div>
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center">
+                                        <a class="btn btn-outline-dark mt-auto" href="{% url 'product' product.id  %}#product">Voir Produit</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+    
+                        {% else %}
+                    <div class="col mb-5">
+                            <div class="card h-100">
+                                <!-- Product image-->
+                                {% if product.image %}
+                                    <img class="card-img-top" src="{{ product.image.url }}"> 
+                                {% else %}
+                                    <img class="card-img-top" src="{% static 'assets/no_image.png' %}" alt="">
+                                {% endif %}
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h5 class="fw-bolder">{{ product.name }}</h5>
+                                        <div class="d-flex justify-content-center small text-warning mb-2">
+                                            <div class="bi-star-fill"></div>
+                                            &nbsp;&nbsp;Disponible!&nbsp;&nbsp;
+                                            <div class="bi-star-fill"></div>
+                                        </div>
+                                        <!-- Product price-->
+                                        {{ product.price }} €
+                                    </div>
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'product' product.id %}#product">Voir Produit</a></div>
+                                </div>
+                            </div>
+                        </div>
+    
+                            {% endif %}
+                        {% endfor %}
+    
+    
+                </div>
+            </section>
+        </div>
+        
+
+{% endblock content %}

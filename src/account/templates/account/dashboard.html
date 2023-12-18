@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+
+<div id="dashboard">
+  <header class="bg-dark py-1">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white-50">            
+            <h3 class="display-4 fw-bolder" style="font-size: 20px;">
+                Bienvenue {{ user.first_name }}, sur la gestion de votre compte 
+            </h3>
+        </div>
+    </div>
+  </header>
+  <br>
+  <div class="group">    
+    <div class="block">
+      <div class="menu">
+        <ul>
+          <li><h3>Menu options pour profile</h3></li>
+        </ul>
+        
+        <ol>
+          <li style="padding: 5px;"><a href='{% url "edit" %}#edit-compte' class='btn btn-secondary' style="width: 350px; height: 35px;">Modifier vos coordonnées:</a></li>
+          <li style="padding: 5px;"><a href='{% url "password_change" %}#pass-change' class='btn btn-secondary' style="width: 350px; height: 35px;">Changer votre mot de passe</a></li>
+          <li style="padding: 5px;"><a href="{% url 'order_list' %}" class='btn btn-secondary' style="width: 350px; height: 35px;">Accéder a la liste de vos commandes</a></li>
+          <li style="padding: 5px;"><a href="{% url 'contact' %}#form-contact" class='btn btn-secondary' style="width: 350px; height: 35px;">Nous contacter</a></li>
+          <li style="padding: 5px;"><a href="{% url 'home' %}" class='btn btn-secondary' style="width: 350px; height: 35px;">Retour Accueil</a></li>
+        </ol>
+      </div>
+      <div class="profil">
+        <ul>
+          <li><h3>Vos informations personnelles:</h3></li>
+        </ul>
+        {% for item in user_profile %}
+        <table>
+          <tr>
+            <th>Nom:</th>
+            <td>{{ item.genre }} {{ user.first_name }} {{ user.last_name }}</td>
+          </tr>
+          <tr>
+            <th>Né le:</th>
+            <td>{{ item.date_of_birth }}</td>
+          </tr>
+        </table>
+        {% endfor %}
+        <table>
+          <tr>
+            <th>Email:</th>
+            <td>{{ user.username }}</td>
+          </tr>
+        </table>
+        <br>
+        {% for item in user_profile %}
+        <h3>Adresse principale: </h3>
+        <table>
+            <tr>
+              <th>Adresse:</th>
+              <td> {{ item.address_primary }}</td>
+            </tr>
+            <tr>
+              <th>Code postal:</th>
+              <td>{{ item.postal_code_primary }}</td>
+            </tr>
+            <tr>
+              <th>Ville:</th>
+              <td>{{ item.city_primary }}</td>
+            </tr>     
+            <tr>
+              <th>N° tél:</th>
+              <td>{{ item.phoneNumber1 }}</td>
+            </tr>
+            <tr>
+              <th>Autre N° tél:</th>
+              {% if item.phoneNumber2 is not None %}          
+                <td>{{ item.phoneNumber2 }}</td>
+              {% endif %}
+            </tr>
+        </table>
+        <br>
+        <h3>Adresse secondaire:</h3>
+        <table>
+          <tr>
+            <th>Adresse:</th>
+            {% if item.address_secondery %}
+            <td>{{ item.address_secondery }}</td>
+            {% endif %}
+          </tr>
+          <tr>
+            <th>Code postal:</th>
+            {% if item.postal_code_secondery %}
+              <td>{{ item.postal_code_secondery }}</td>
+            {% endif %}
+          </tr>
+          <tr>
+            <th>Ville:</th>
+            {% if item.city_secondery %}
+              <td>{{ item.city_secondery }}</td>
+            {% endif %}
+          </tr>
+        </table>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="commande">
+      <ul>
+        <li><h3>Liste des 5 dernières commandes:</h3></li>
+      </ul>
+      {% if nb_order > 0 %}
+      <h3>Nombre de commandes: {{ nb_order }}</h3>
+      {% endif %}
+      <div class="list">
+        {% for item in order_5 %}
+        <table>
+          {% if not item %}
+          <tr>
+            <th>Vous n'avez pas encore de commande.</th>
+          </tr>
+          {% else %}
+          <tr>
+            <th>Commande N°:</th>
+            <td>{{ item.id }}</td>
+            <tr>
+              <th>- Date:</th>
+              <td>{{ item.created }}</td>
+            </tr>
+          </tr>
+          <br>
+          {% endif %}        
+        </table>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  {{ redirect_to_login_immediately }}
+</div>
+{% endblock content %}

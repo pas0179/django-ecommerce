@@ -1,0 +1,15 @@
+Bonjour,
+
+Vous avez reçu une demande de contact:
+
+Contact: {{ first_name }} {{ last_name }}
+Email: {{ email }}
+
+{% if not phone %}
+Téléphone: non-renseigné
+{% else %}
+Téléphone: {{ phone }}
+{% endif %}
+
+Message: 
+{{ message }}

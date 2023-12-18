@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css%}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<div class="order-create">
+    {% if request.user.is_authenticated %}
+    <form class="row g-3" style="gap: 40px;">
+        {% for user in user_form %}
+        <div class="col-md-2">
+          <label for="validationServer01" class="form-label">Prénom</label>
+          <input type="text" class="form-control" id="validationServer01" value="{{ user.first_name }}">
+        </div>
+        
+        <div class="col-md-2">
+          <label for="validationServer02" class="form-label">Nom de famille</label>
+          <input type="text" class="form-control" id="validationServer02" value="{{ user.last_name }}">
+        </div>
+        <div class="col-md-3">
+          <label for="validationServerUsername" class="form-label">Adresse Email</label>
+          <div class="input-group has-validation">
+            <span class="input-group-text" id="inputGroupPrepend3">@</span>
+            <input type="text" class="form-control" id="validationServerUsername" value="{{ user.email }}">
+          </div>
+        </div>
+        {% endfor %}
+        {% for profile in profile_form %}
+        <div class="col-md-2">
+            <label for="validationServer01" class="form-label">N° Téléphone</label>
+            <input type="text" class="form-control" id="validationServer01" value="{{ profile.phoneNumber1 }}">
+        </div>
+        <div class="col-md-5">
+          <label for="validationServer03" class="form-label">Adresse de livraison</label>
+          <input type="text" class="form-control" id="validationServer03" value="{{ profile.address_primary}}">
+          <div id="validationServer03Feedback" class="invalid-feedback">
+            Merci d'indiquer une adresse valide
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label for="validationServer04" class="form-label">Ville</label>
+          <select class="form-select" id="validationServer04" value="{{ profile.city_primary}}">
+            <option selected disabled value="">Choisisser...</option>
+            <option>...</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label for="validationServer05" class="form-label">Code Postal</label>
+          <input type="text" class="form-control" id="validationServer05" value="{{ profile.postal_code_primary}}">
+
+        </div>
+        {% endfor %}
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Submit form</button>
+        </div>
+      </form>
+      {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h1>Votre commande:</h1>
+    <div class="group">
+        <div class="order-form">
+            <h4>Identifiants: </h4>
+            {% if request.user.is_authenticated %}
+                <ul>
+                    {% for user in user_form %}
+                        
+                    <li>{{ user.first_name }}</li>
+                    <li>{{ user.last_name }}</li>
+
+                    {% endfor %}
+                </ul>
+                <h4>Coordonnées: </h4>
+                <ul>
+                    {% for profile in profile_form %}
+                    <li>{{ profile.date_of_birth }}</li>
+                    <li>{{ profile.address_primary }}</li>
+                    <li>{{ profile.postal_code_primary }}</li>
+                    <li>{{ profile.city_primary }}</li>
+                    <li>{{ profile.phoneNumber1 }}</li>
+                    <li>{{ profile.phoneNumber2|default:"--------------" }}</li>
+                    {% endfor %}
+                </ul>
+                <div class="modif">
+                    <p>Si vos coordonnées sont obsolètes,<br/> Merci de les modifier avant de commander.</p>
+                    <span class="button"><a href="{% url 'edit' %}">Modifier</a></span>
+                </div>
+            {% endif %}
+        </div>
+        <div class="order-info">
+            <h3>Vos produits</h3>
+            <ul>
+                {% for item in cart %}
+                <li>
+                    {{ item.quantity }}x {{ item.product.name }}
+                    <span>{{ item.total_price }} €</span>
+                </li>
+                {% endfor %}
+            </ul>
+            <p>TOTAL A PAYER: {{ cart.get_total_price }} €</p>
+            <div class="but">
+                <form method="post">
+                    <p>
+                        <input type="submit" "btn btn-secondary" value="Commander">
+                        <input type="submit" "btn btn-secondary" value="Supprimer">
+                    </p>
+                    {% csrf_token %}
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}

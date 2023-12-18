@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+    <!-- Integration du fichier style.css -->
+    <link rel="stylesheet"
+          type="text/css"
+          href="{% static 'css/style.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+<div id="product"">
+    <header class="bg-dark py-1">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white-50">                
+                <h3 class="display-4 fw-bolder" style="font-size: 20px;">
+                    {{ product.name }}
+                </h3>
+            </div>
+        </div>
+    </header>
+    <div class="product-info">
+        <div class="card">
+            <div class="row g-0 col-md-12">
+                <div class="col-md-4" style="align-self: center;">
+                    <img class="img-fluid rounded-start" src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'assets/no_image.png' %}{% endif %}"> 
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h3 id="cart-info" style="text-align: center; color: red;"></h3>
+                        <center>
+                            <h3 class="card-title">{{ product.name }}</h3>
+                            <br/>
+                            <p class="card-text justified">{{ product.description }}</p>
+                    
+                            {% if not product.available %}
+                            <div class="d-flex justify-content-center small text-warning mb-2">
+                                <div class="bi-star-fill"></div>
+                                &nbsp;&nbsp;Non Disponible!&nbsp;&nbsp;
+                                <div class="bi-star-fill"></div>
+                            </div>
+    
+                            <!-- Product price-->
+                            <strike>
+                            ${{ product.price }}
+                            </strike>
+                            &nbsp;
+    
+                            {% else %}
+                            <div class="d-flex justify-content-center small text-warning mb-2">
+                                <div class="bi-star-fill"></div>
+                                &nbsp;&nbsp;Disponible!&nbsp;&nbsp;
+                                <div class="bi-star-fill"></div>
+                            </div>
+                            {{ product.price }} €
+                        
+                            {% endif %}
+                            <br/><br/>
+                            <div class="row justify-content-center">
+                                <div class="col-md-4">Quantité:</div>
+                                <div class="col-md-2">
+                                    <select class="form-select form-select-sm" id="qty-cart">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br/><br/>
+                            <a href="{% url 'category' 'all' %}" class="btn btn-secondary">Retour Produits</a>
+                            <button type="button" value="{{ product.id }}" class="btn btn-secondary" id="add-cart">Ajouter Panier</button>
+    
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        	
+
+
+<script>
+    // Check if button pressed
+    $(document).on('click', '#add-cart', function(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url "cart_add" %}',
+            data: {
+        product_id: $('#add-cart').val(),
+        product_qty: $('#qty-cart option:selected').text(),
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+        action: 'post'
+            },
+    
+            success: function(json){
+                // console.log(json)
+                document.getElementById("cart_quantity").textContent = json.qty
+                document.getElementById("cart-info").innerHTML = "Un produit(s) a été ajouté a votre panier";
+            },
+    
+            error: function(xhr, errmsg, err){
+    
+            }
+    
+    
+        });
+    
+    
+    
+    })
+    
+    
+    
+    
+    </script>
+
+
+{% endblock %}
