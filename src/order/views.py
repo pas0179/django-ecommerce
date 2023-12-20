@@ -22,7 +22,7 @@ def add_order(request):
     if request.method == 'POST':
         # Création du formulaire
         total = cart.get_total_price()
-        print(total)
+
         order = Order.objects.create(user=me, 
                                     total_order=total)
         for item in cart:
@@ -34,8 +34,9 @@ def add_order(request):
                 
             # Ajouter la quantité vendue dans la gestion du stock
             StockProduct.objects.create(name_product=item['product'],
-                                    quantity_out=item['quantity'],
-                                    )
+                                        # Sortie de stock du produit
+                                        quantity_out=item['quantity'],
+                                        )
         # Vide le panier
         cart.clear()
 
@@ -52,27 +53,5 @@ def add_order(request):
         context = {'cart': cart, 'user_form': user_form, 'profile_form': profile_form}
 
         return render(request, 'order/create_order.html', context)
+
         
-
-    
-@login_required
-def order_list(request, orders_id=None):
-	order = None
-	if request.user.is_authenticated:
-		user = User.objects.get(id=request.user.id)
-
-		orders = Order.objects.filter(user=user)
-		order_item = OrderItem.objects.filter(id=orders_id)
-
-		if orders_id:
-			order = get_object_or_404(Order, id=orders_id)
-			order_item = order_item.filter(order_id=order)
-	else:
-		return redirect("login")
-
-	context = {
-		"order": order,
-		"orders": orders,
-		"order_item": order_item,
-	}
-	return render(request, "order/order_list.html", context)

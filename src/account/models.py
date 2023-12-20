@@ -2,10 +2,18 @@ from django.db import models
 from django.conf import settings
 
 
+"""
+genre
+user, date_of_birth, adress_primary, complement_adress_primary, postal_code_primary, city_primary
+phone_number1, phone_number2
+adress_secondery, complement_adress_secondary, postal_code_secondery, city_secondery
+"""
+
+
 class Profile(models.Model):
     GENRE = (
         ('aucun', 'aucun'),
-        ('Mme', 'Mme.'),
+        ('Mme.', 'Mme.'),
         ('Mr.', 'Mr.'),
     )
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

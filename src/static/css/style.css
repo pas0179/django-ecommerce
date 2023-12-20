@@ -350,49 +350,8 @@ a:hover::before {
 #edit-compte .group {
     width: 100%;
 }
-  
-#edit-compte .group p {
-    width: 100%;
-    margin-top: 0px;
-    font-size: 14px;
-    text-align: center;
-    margin-bottom: 20px;
-}
-#edit-compte .group .mail {
-    width: 100%;
-    font-size: 15px;
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
-    justify-content: center;
-}
-#edit-compte .group .mail tr {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: last baseline;
-}
-#edit-compte .group .mail th {
-    margin: 0px 0px 10px 0px;
-}
-#edit-compte .group .mail td {
-    margin-left: 40px;
-}
-#edit-compte .group .mail input {
-    border-radius: 4px;
-    padding: 2px 5px;
-    font-size: 15px;
-    border-style: none;
-    width: 220px;
-    background-color: white;
-}
-#edit-compte .group .sep {
-    width: 80%;
-    border: solid rgb(156, 3, 3) 1px;
-    margin-bottom: 20px;
-    margin-left: auto;
-    margin-right: auto;
-}
+
+
 #edit-compte .group .block {
     width: 90%;
     padding: 40px;
@@ -428,7 +387,9 @@ a:hover::before {
 }
 #edit-compte .group .button {
     width: 100%;
-    text-align: center;
+    justify-content: center;
+    display: flex;
+    gap: 50px;
 }
 
 /* Password change ***********************************************************/
@@ -636,5 +597,31 @@ a:hover::before {
     justify-content: center;
 }
 
+/*Dashboard ************************************************/
+#dashboard {
+    width: 100%;
+}
+#dashboard .group {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+}
+#dashboard .group .block {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+#dashboard .group .block .profil {
+    min-width: 400px;
+}
+#dashboard .group .block .order-list {
+    border-radius: 7px;
+    background-color: #ffffff;
+    padding: 40px;
+    height: max-content;
+}
 
 

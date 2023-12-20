@@ -17,10 +17,13 @@ urlpatterns = [
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
     path("dashboard/", dashboard, name="dashboard"),
+    path("dashboard/<int:orders_id>/", dashboard, name="order_list_by_order"),
     path("register/", register, name="register"),
     path("edit/", edit, name="edit"),
     # url redirige si authentification sur login
     path('activate/<uidb64>/<token>', activate, name='activate'),
+
+    
 
     # integration des vues django.auth pour modifié et reset du mot de passe
     # change password urls

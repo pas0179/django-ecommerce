@@ -47,9 +47,9 @@
               </div>
               <div class="text-end">
                 
-                <div class="">SOUS-TOTAL: <span class="fw-bold"></span><div id="subtotal" class="d-inline-flex fw-bold">{{cart.get_subtotal_price}} €</div></div>
-                <div id="">LIVRAISON: <span class="small"> (+2 jour max.) </span>: <span class="fw-bold">10.50 €</span></div>
-                <div class="pt-2">TOTAL A PAYER: <span id="total" class="fw-bold h5">{{cart.get_total_price}} €</span></div>
+                <div class="">SOUS-TOTAL: <span class="fw-bold"></span><div id="subtotal" class="d-inline-flex fw-bold">{{cart.get_subtotal_price}} </div> €</div>
+                <div id="">LIVRAISON: <span class="small"> (+2 jour max.) </span>: <span class="fw-bold">10.50 </span> €</div>
+                <div class="pt-2">TOTAL A PAYER: <span id="total" class="fw-bold h5">{{cart.get_total_price}} </span> €</div>
                 
               </div>
             </div>
@@ -174,7 +174,7 @@ $(document).on('click', '.update-button', function (e) {
         document.getElementById("cart_quantity").innerHTML = json.quantity;
         document.getElementById("subtotal").innerHTML = json.subtotal;
         document.getElementById("total").innerHTML = total;
-        // location.reload();
+        location.reload();
       },
       error: function (xhr, errmsg, err) {}
     });

@@ -32,17 +32,28 @@ def cart_add(request):
 		if product.available:
 			if product_qty <= product.quantity:
 
-				# Sauvegarde dans la session
-				cart.add(product=product, quantity=product_qty)
+				if product_qty > 1:
 
-				# Récup de quantité d'articles dans le panier
-				cart_quantity = cart.__len__()
+					# Sauvegarde dans la session
+					cart.add(product=product, quantity=product_qty)
 
-				# Return resonse
-				# response = JsonResponse({'Product Name: ': product.name})
-				message = "Produit ajouté dans votre panier"
-				response = JsonResponse({'qty': cart_quantity, "message": message})
-				return response
+					# Récup de quantité d'articles dans le panier
+					cart_quantity = cart.__len__()
+
+					message = "Produits ajoutés dans votre panier"
+					response = JsonResponse({'qty': cart_quantity, "message": message})
+					return response
+				else:
+					# Sauvegarde dans la session
+					cart.add(product=product, quantity=product_qty)
+
+					# Récup de quantité d'articles dans le panier
+					cart_quantity = cart.__len__()
+
+					message = "Produit ajouté dans votre panier"
+					response = JsonResponse({'qty': cart_quantity, "message": message})
+					return response
+
 			
 			else:
 				message = "La quantité selectionné est supérieur a la quantité disponible ..."

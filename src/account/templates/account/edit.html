@@ -21,16 +21,6 @@
   <br><br>
   <div class="group">
     <form method="post" enctype="multipart/form-data">
-      <p>
-        l'adresse mail doit correspondre a l'adresse renseigné lors de l'inscription et doit être valide.<br />
-        Cette adresse vous servira en cas d'oublie de votre mot de passe.
-      </p>
-      <table class="mail">
-        <tr>
-          <th>Votre Email: </th>
-          <td>{{ user_form.email }}</td>
-        </tr>
-      </table>
       <div class="sep"></div>
       <div class="block">
         <div class="gauche">
@@ -108,7 +98,7 @@
       </div>      
       <div class="button">
         {% csrf_token %}
-        <a href="{% url 'dashboard' %}#dashboard" class="btn btn-secondary" style="margin-right: 20px;">Annuler</a>
+        <a href="{% url 'dashboard' %}#dashboard" class="btn btn-secondary">Annuler</a>
         <input type="submit" value="Valider" class="btn btn-secondary">
       </div>
     </form>

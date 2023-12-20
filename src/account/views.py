@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import UserRegistrationForm, UserEditForm, ProfileEditForm
 from .models import Profile
+from django.contrib.auth.models import User
 
 # Paquets necessaire pour l'envoi de mail
 # Import pour l'envoi de l'email afin d'activer le nouveau compte
@@ -20,14 +21,46 @@ from django.contrib.auth import get_user_model
 from .tokens import account_activation_token
 
 from cart.cart import Cart
+from order.models import Order, OrderItem
+from django.contrib.auth.models import User
+from account.models import Profile
 
 
 
 # Create your views here.
 @login_required
-def dashboard(request):
-	# Tableau de bord de l'utilisateur
-	return render(request, 'account/dashboard.html')
+def dashboard(request, orders_id=None):
+	"""
+	Tableau de bord de l'utilisateur
+	"""
+	orders = None
+	order_item = None
+
+	if request.user.is_authenticated:
+		user = User.objects.get (id=request.user.id)
+		profile = Profile.objects.all()
+		user_profile = profile.filter(user=user)
+
+		order = Order.objects.filter(user=user)
+		nb_order = order.count()
+
+		if orders_id:
+			orders = get_object_or_404(Order, id=orders_id)
+			order_item = OrderItem.objects.filter(order_id=orders_id)
+		
+	else:
+		return redirect("login")
+
+	context = {
+		"order": order,
+		"orders": orders,
+		"order_item": order_item,
+		"nb_order": nb_order,
+		"user": user,
+		"user_profile": user_profile,
+	}
+	
+	return render(request, 'account/dashboard.html', context)
 
 
 def login_user(request):
@@ -108,6 +141,7 @@ def register(request):
 		user_form = UserRegistrationForm()
         
 	return render(request, "account/register.html", {"user_form": user_form})
+
 
 
 # Formulaire de modification du user et profile

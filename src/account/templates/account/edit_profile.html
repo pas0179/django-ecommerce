@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- Header-->
+        <header class="bg-dark py-1">
+            <div class="container px-3 px-lg-3 my-3">
+                <div class="text-center text-white">
+                    <p class="lead fw-normal text-white-50 mb-0">Modifier votre Profile ...</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="container" style="margin-bottom: 60px;">
+            <p>Profile: <span>{{profile.genre}}</span>{{me.first_name}} {{me.last_name}}</p>
+            <form class="row g-5 needs-validation" method="POST" action="{% url 'edit_profil' %}">
+                <div class="col-md-2">
+                    <label for="validationCustom04" class="form-label">Genre</label>
+                    {{ genre_form }}
+                </div>
+
+                <div class="col-md-2">
+                  <label for="validationCustom01" class="form-label">Date de naissance</label>
+                  <input type="text" class="form-control" id="validationCustom01" value="{{ profile.date_of_birth }}">
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustom01" class="form-label">Adresse principale</label>
+                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.address_primary }}" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustom01" class="form-label">Complement adresse</label>
+                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.complement_address_primary }}">
+                </div>
+                <div class="col-md-2">
+                    <label for="validationCustom01" class="form-label">Code postal</label>
+                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.postal_code_primary }}" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="validationCustom01" class="form-label">Ville</label>
+                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.city_primary }}" required>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationCustom01" class="form-label">N° Mobile</label>
+                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.phoneNumber1 }}" required>
+                </div>
+                <div class="col-md-2">
+                    <label for="validationCustom01" class="form-label">N° Fixe</label>
+                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.phoneNumber2 }}">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="validationCustom01" class="form-label">Adresse Secondaire</label>
+                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.address_secondery }}" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationCustom01" class="form-label">Complement adresse</label>
+                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.complement_adress_secondary }}">
+                </div>
+                <div class="col-md-2">
+                    <label for="validationCustom01" class="form-label">Code postal</label>
+                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.postal_code_secondery }}" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="validationCustom01" class="form-label">Ville</label>
+                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.city_secondery }}" required>
+                </div>
+                
+                {% csrf_token %}
+                <div class="col-12">
+                  <button class="btn btn-secondary" type="submit">Valider Changement</button>
+                </div>
+              </form>
+
+
+
+
+
+
+
+
+
+
+        	
+        </div>
+
+{% endblock %}

@@ -41,3 +41,4 @@ def product(request,pk):
 	calcul_stock()
 	product = Product.objects.get(id=pk)
 	return render(request, 'product/product.html', {'product':product})
+

@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from .models import Profile
 
 
+
+
 # Class pour la création d'un nouveau user
 class UserRegistrationForm(forms.ModelForm):
 
@@ -14,7 +16,7 @@ class UserRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'email']
+        fields = ['username', 'first_name', 'email', 'last_name']
 
     def clean_password2(self):
         # Vérification que les mots de passes sont identique
@@ -38,7 +40,11 @@ class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['first_name', 'last_name', 'email']
-
+        labels = {
+            "first_name": "Prénom",
+            "last_name": "Nom de famille",
+            "email": "Adresse Email",
+        }
 
 
 # class pour modifié le profil d'un utilisateur
@@ -59,3 +65,17 @@ class ProfileEditForm(forms.ModelForm):
             "postal_code_secondery",
             "city_secondery",            
         ]
+        labels = {
+            "genre": "genre",
+            "date_of_birth": "Date de naissance",
+            "address_primary": "Adresse principale",
+            "complement_adress_primary": "Complement d'adresse",
+            "postal_code_primary": "Code Postal",
+            "city_primary": "Ville",
+            "phoneNumber1": "N° Mobile",
+            "phoneNumber2": "N° Fixe",
+            "address_secondery": "Adresse secondaire",
+            "complement_adress_secondary": "Complement d'adresse",
+            "postal_code_secondery": "Code Postal",
+            "city_secondery": "Ville",
+        }

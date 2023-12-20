@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Import pillow pour redimensionner une image lors de l'import
 from PIL import Image 
@@ -19,7 +20,7 @@ class Category(models.Model):
 
 	def __str__(self):
 		return self.name
-
+	
 
 
 # Création de la table produit
@@ -46,6 +47,7 @@ class Product(models.Model):
 	
 	def view_stock(self):
 		return self.quantity
+	
 	
 
 	max_width = 800

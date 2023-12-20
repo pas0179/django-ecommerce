@@ -11,7 +11,7 @@ class OrderItemInLine(admin.TabularInline):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['id', 'user', 'paid_status',
+    list_display = ['id', 'user', 'paid_status', 'total_order', 'order_key',
         'created', 'updated']
     list_filter = ['paid_status', 'created', 'updated']
     inlines = [OrderItemInLine]

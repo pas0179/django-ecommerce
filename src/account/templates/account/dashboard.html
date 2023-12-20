@@ -19,126 +19,104 @@
         </div>
     </div>
   </header>
-  <br>
   <div class="group">    
-    <div class="block">
+    <div class="block">      
       <div class="menu">
-        <ul>
-          <li><h3>Menu options pour profile</h3></li>
-        </ul>
-        
+        <h3 style="margin-left: 45px;">Menu options pour profile</h3>      
         <ol>
-          <li style="padding: 5px;"><a href='{% url "edit" %}#edit-compte' class='btn btn-secondary' style="width: 350px; height: 35px;">Modifier vos coordonnées:</a></li>
-          <li style="padding: 5px;"><a href='{% url "password_change" %}#pass-change' class='btn btn-secondary' style="width: 350px; height: 35px;">Changer votre mot de passe</a></li>
-          <li style="padding: 5px;"><a href="{% url 'order_list' %}" class='btn btn-secondary' style="width: 350px; height: 35px;">Accéder a la liste de vos commandes</a></li>
-          <li style="padding: 5px;"><a href="{% url 'contact' %}#form-contact" class='btn btn-secondary' style="width: 350px; height: 35px;">Nous contacter</a></li>
-          <li style="padding: 5px;"><a href="{% url 'home' %}" class='btn btn-secondary' style="width: 350px; height: 35px;">Retour Accueil</a></li>
+          <li style="padding: 5px;"><a href='{% url "edit" %}#edit-compte' class='btn btn-secondary' style="width: 300px; height: 35px;">Modifier vos coordonnées:</a></li>
+          <li style="padding: 5px;"><a href='{% url "password_change" %}#pass-change' class='btn btn-secondary' style="width: 300px; height: 35px;">Changer votre mot de passe</a></li>
+          <li style="padding: 5px;"><a href="{% url 'contact' %}#form-contact" class='btn btn-secondary' style="width: 300px; height: 35px;">Nous contacter</a></li>
+          <li style="padding: 5px;"><a href="{% url 'home' %}" class='btn btn-secondary' style="width: 300px; height: 35px;">Retour Accueil</a></li>
+          
         </ol>
       </div>
       <div class="profil">
-        <ul>
-          <li><h3>Vos informations personnelles:</h3></li>
-        </ul>
-        {% for item in user_profile %}
-        <table>
-          <tr>
-            <th>Nom:</th>
-            <td>{{ item.genre }} {{ user.first_name }} {{ user.last_name }}</td>
-          </tr>
-          <tr>
-            <th>Né le:</th>
-            <td>{{ item.date_of_birth }}</td>
-          </tr>
-        </table>
-        {% endfor %}
-        <table>
-          <tr>
-            <th>Email:</th>
-            <td>{{ user.username }}</td>
-          </tr>
-        </table>
-        <br>
-        {% for item in user_profile %}
-        <h3>Adresse principale: </h3>
-        <table>
-            <tr>
-              <th>Adresse:</th>
-              <td> {{ item.address_primary }}</td>
-            </tr>
-            <tr>
-              <th>Code postal:</th>
-              <td>{{ item.postal_code_primary }}</td>
-            </tr>
-            <tr>
-              <th>Ville:</th>
-              <td>{{ item.city_primary }}</td>
-            </tr>     
-            <tr>
-              <th>N° tél:</th>
-              <td>{{ item.phoneNumber1 }}</td>
-            </tr>
-            <tr>
-              <th>Autre N° tél:</th>
-              {% if item.phoneNumber2 is not None %}          
-                <td>{{ item.phoneNumber2 }}</td>
-              {% endif %}
-            </tr>
-        </table>
-        <br>
-        <h3>Adresse secondaire:</h3>
-        <table>
-          <tr>
-            <th>Adresse:</th>
+        <div class="card w-100 mb-3">
+          <div class="card-body" style="padding: 40px;">
+            <h5 class="card-title">Identification</h5>
+            {% for item in user_profile %}
+            <p class="card-text" style="font-size: 15px;"><span style="font-weight: 600;">Identifiant: </span>{{ item.genre }} {{ user.first_name }} {{ user.last_name }}</p>
+            <p class="card-text" style="font-size: 15px;"><span style="font-weight: 600;">Email: </span>{{ user.username }}</p>
+            <p class="card-text" style="font-size: 15px;"><span style="font-weight: 600;">Date-naissance: </span>{{ item.date_of_birth }}</p>
+            <br/>
+            <h5 class="card-title">Téléphone</h5>
+            <p class="card-text" style="font-size: 15px;"><span style="font-weight: 600;">Mobile: </span>{{ item.phoneNumber1 }}</p>
+            {% if item.phoneNumber2 is not None %}                       
+              <p class="card-text" style="font-size: 15px;"><span style="font-weight: 600;">Fixe: </span>{{ item.phoneNumber2 }}</p>
+            {% endif %}
+            <br/>
+            <h5 class="card-title">Adresse principale</h5>
+            <p class="card-text" style="font-size: 15px;"><span style="font-weight: 600;">Adresse: </span>{{ item.address_primary }}</p>
+            {% if item.complement_adress_primary is not None %}
+            <p class="card-text" style="font-size: 15px;"><span style="font-weight: 600;">Complement: </span>{{ item.complement_adress_primary }}</p>
+            {% endif %}
+            <p class="card-text" style="font-size: 15px;"><span style="font-weight: 600;">Code postal: </span>{{ item.postal_code_primary }}</p>
+            <p class="card-text" style="font-size: 15px;"><span style="font-weight: 600;">Ville: </span>{{ item.city_primary }}</p>
+            
             {% if item.address_secondery %}
-            <td>{{ item.address_secondery }}</td>
+            <h5 class="card-title">Adresse secondaire</h5>
+            <p class="card-text" style="font-size: 15px;"><span style="font-weight: 600;">Adresse: </span>{{ item.address_secondery }}</p>
+            <p class="card-text" style="font-size: 15px;"><span style="font-weight: 600;">Complement: </span>{{ item.complement_adress_secondary }}</p>
+            <p class="card-text" style="font-size: 15px;"><span style="font-weight: 600;">Code postal: </span>{{ item.postal_code_secondery }}</p>
+            <p class="card-text" style="font-size: 15px;"><span style="font-weight: 600;">Ville: </span>{{ item.city_secondery }}</p>
             {% endif %}
-          </tr>
-          <tr>
-            <th>Code postal:</th>
-            {% if item.postal_code_secondery %}
-              <td>{{ item.postal_code_secondery }}</td>
-            {% endif %}
-          </tr>
-          <tr>
-            <th>Ville:</th>
-            {% if item.city_secondery %}
-              <td>{{ item.city_secondery }}</td>
-            {% endif %}
-          </tr>
-        </table>
-        {% endfor %}
-      </div>
-    </div>
-    <div class="commande">
-      <ul>
-        <li><h3>Liste des 5 dernières commandes:</h3></li>
-      </ul>
-      {% if nb_order > 0 %}
-      <h3>Nombre de commandes: {{ nb_order }}</h3>
-      {% endif %}
-      <div class="list">
-        {% for item in order_5 %}
-        <table>
-          {% if not item %}
-          <tr>
-            <th>Vous n'avez pas encore de commande.</th>
-          </tr>
+
+            {% endfor %}
+
+          </div>
+        </div>
+      </div> 
+
+      <div class="order-list" style="min-width: 350px;">
+        {% if order_item is None %} 
+        <div {% if not order %}class="selected"{% endif %}>
+          {% if nb_order == 1 %}
+            <h5><a href="{% url 'dashboard' %}#dashboard">Vous avez {{ nb_order }} commande</a></h5>
+          {% elif nb_order > 1 %}
+            <h5> <a href="{% url 'dashboard' %}#dashboard">Vous avez {{ nb_order }} commandes</a></h5>
           {% else %}
-          <tr>
-            <th>Commande N°:</th>
-            <td>{{ item.id }}</td>
-            <tr>
-              <th>- Date:</th>
-              <td>{{ item.created }}</td>
-            </tr>
-          </tr>
-          <br>
-          {% endif %}        
-        </table>
-        {% endfor %}
+            <h5>Vous n'avez pas de commande</h5>
+          {% endif %}
+        </div>
+           
+        <div class="list" style="font-size: 15px;"
+          <ul>
+            {% for item in order %}
+            <li {% if orders_id == item.id %}class="selected"{% endif %}><a href="{{ item.get_absolute_url }}#dashboard">Commande N°: {{ item.id }}</a></li>
+            <ul class="order">
+              <li>Date: {{ item.created }} </li>
+              <li>Total commande: {{ item.total_order }} €</li>
+              {% if item.paid_status == False %}
+              <li>Payer: En attente de reglement</li>
+              {% else %}
+              <li>Payer: oui </li>
+              {% endif %}
+            </ul>
+            {% endfor %}
+          </ul>
+        </div>
+        {% else %}
+        <div class="list" style="font-size: 15px;">
+          <h5><a href="{% url 'dashboard' %}#dashboard">Retour toutes les commandes</a></h5>
+          <ul>
+            <li><h5>Commande n°: {{ orders.id }}</h5></li>
+            {% for item in order_item %}
+            <ul>
+              <li>Produit: {{ item.product }}</li>
+              <ul>
+                <li>Quantité: {{ item.quantity }}</li>
+                <li>Prix unit: {{ item.price }} €</li>
+              </ul>              
+            </ul>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
       </div>
     </div>
   </div>
-  {{ redirect_to_login_immediately }}
+
 </div>
+
 {% endblock content %}
