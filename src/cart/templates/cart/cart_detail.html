@@ -34,28 +34,24 @@
               <div class="d-flex d-flex-inline">
                 <div class="pe-3"></div>
                 <div class="dropdown">
-                <a class="text-reset text-decoration-none dropdown-toggle" href="#" role="link" id="dropdownLink" data-bs-toggle="dropdown" aria-expanded="false">
-                    Options de livraison
+                <a class="text-reset text-decoration-none" href="#" role="link" id="dropdownLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    & sanncha &
                   
-                </a>
-      
-                <ul class="dropdown-menu" aria-labelledby="dropdownLink">
-                  <li class="item small" style="padding-left: 10px;"><a href="">Livraison normal</a></li>
-                  <li class="item small" style="padding-left: 10px;"> <a href="">Livraison prenium</a></li>
-                </ul>
+                </a>     
+
                 </div>
               </div>
               <div class="text-end">
                 
                 <div class="">SOUS-TOTAL: <span class="fw-bold"></span><div id="subtotal" class="d-inline-flex fw-bold">{{cart.get_subtotal_price}} </div> €</div>
-                <div id="">LIVRAISON: <span class="small"> (+2 jour max.) </span>: <span class="fw-bold">10.50 </span> €</div>
+                <div id="">LIVRAISON: <span class="small"> (de 2 à 5 jour max.) </span>: <span class="fw-bold">10.50 </span> €</div>
                 <div class="pt-2">TOTAL A PAYER: <span id="total" class="fw-bold h5">{{cart.get_total_price}} </span> €</div>
                 
               </div>
             </div>
             <div class="col-md-5 col-lg-4 order-md-last p-0 order-3">
               <div class="d-grid gap-2 ">
-                <a role="button" href="{% url 'add_order' %}" class="btn btn-success fw-bold" type="button">Valider le panier</a>
+                <a role="button" href="{% url 'add_order' %}" class="btn btn-secondary fw-bold" type="button">Valider le panier</a>
                 <button class="btn btn-light" type="button">Sauvegarder le panier pour plus tard</button>
               </div>
             </div>
@@ -80,7 +76,6 @@
                             <div>
                                 {{ product.description }}
                             </div>
-
                         </p>
                         <div class="row g-3">
                             <div class="col-8 d-flex d-flex-inline" style="gap: 10px;">
@@ -178,7 +173,7 @@ $(document).on('click', '.update-button', function (e) {
       },
       error: function (xhr, errmsg, err) {}
     });
-  })
+})
 
 
 </script>

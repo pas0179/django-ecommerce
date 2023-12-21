@@ -40,5 +40,22 @@ def category(request, slug):
 def product(request,pk):
 	calcul_stock()
 	product = Product.objects.get(id=pk)
-	return render(request, 'product/product.html', {'product':product})
+
+	# Création pour dropdown de la quantité en stock 
+	# exemple: 5 produits en stock -> 1, 2, 3, 4, 5
+	quantity = product.view_stock()
+
+	# Lancement de la fonction dropdown
+	stock = dropdown_quantity(quantity)	
+
+	return render(request, 'product/product.html', {'product':product, "stock": stock})
+
+
+def dropdown_quantity(quantity):
+	stock = {}
+	for i in range(1, quantity+1):
+		stock[str(i)]= i
+		i += 1
+
+	return stock
 

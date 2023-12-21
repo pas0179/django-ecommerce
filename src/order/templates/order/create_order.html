@@ -8,7 +8,7 @@
 
 {% block content %}
 
-<div id="order-create">
+<div id="order">
   <header class="bg-dark py-1">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white-50">
@@ -19,24 +19,24 @@
     </div>
   </header>
   {% if request.user.is_authenticated %}
-  <div class="container-md-10" style="display: inline-flex; flex-wrap: wrap; margin-top: 40px; margin-bottom: 40px;">
-    <div class="col-sm-8 mb-2 mb-sm-0">
-      <div class="card" style="padding: 20px;">
-        <div class="card-body">
+  <div class="group">
+    <div class="order-cont">
+      <div class="card w-100 mb-3">
+        <div class="card-body" style="padding: 40px;">
           <h5 class="card-title" style="text-align: center;">Vos coordonnées</h5>
             <form class="row g-4" style="font-size: 15px; margin-top: 10px;">
               {% for user in user_form %}
-              <div class="col-md-2 input-group-sm">
+              <div class="col-md-3 input-group-sm">
                 <label for="validationServer01" class="form-label">Prénom</label>
                 <input type="text" class="form-control" id="validationServer01" value="{{ user.first_name }}">
               </div>            
-              <div class="col-md-2 input-group-sm">
+              <div class="col-md-3 input-group-sm">
                 <label for="validationServer02" class="form-label">Nom de famille</label>
                 <input type="text" class="form-control" id="validationServer02" value="{{ user.last_name }}">
               </div>
-              <div class="col-md-3 input-group-sm">
+              <div class="col-md-4 input-group-sm">
                 <label for="validationServerUsername" class="form-label">Adresse Email</label>
-                  <input type="text" class="form-control" id="validationServerUsername" value="{{ user.email }}">
+                  <input type="text" class="form-control" id="validationServerUsername" value="{{ user.username }}">
               </div>
               {% endfor %}
               {% for profile in profile_form %}
@@ -73,20 +73,21 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4 mb-2 mb-sm-0" style="max-width: 100%; margin-left: auto; margin-right: auto;">
-      <div class="card" style="min-height: 350px;">
+    <div class="order-product" >
+      <div class="card w-100 mb-3" style="min-height: 350px;">
         <div class="card-body" style="align-self: center;">
           <h5 class="card-title" style="padding: 10px; text-align: center; margin-top: 10px;">Vos produits</h5>
           <div style="padding: 20px;">
               {% for item in cart %}
                 <p class="card-text" style="font-size: 15.5px;">{{ item.quantity }} x {{ item.product.name }} <span>: {{ item.total_price }} €</span></p>
               {% endfor %}
-              <p class="card-text" style="text-align:left; font-size: 16px;">TOTAL A PAYER: {{ cart.get_total_price }} €</p>
+              <p class="card-text" style="text-align:left; font-size: 15px;">Frais de port: 10,50€</p>
+              <p class="card-text" style="text-align:left; font-size: 15px;">TOTAL A PAYER: {{ cart.get_total_price }} €</p>
           </div>                
           <div class="but" style="margin-top: 20px; display: flex; justify-content: center;">
               <form method="post">
                   <p style="font-size: 15px;">
-                      <input type="submit" class="btn btn-secondary" value="Commander" style="font-size: 15px;">
+                      <input type="submit" class="btn btn-secondary" value="Reglement" style="font-size: 15px;">
                       
                   </p>
                   {% csrf_token %}

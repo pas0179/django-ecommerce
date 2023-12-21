@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 
-# Import pour auto_logout
-from datetime import timedelta
 
 # Import du module python-decouple qui a ete fait avant avec PIP
 # pour les variables d'environnements
@@ -41,7 +39,6 @@ ALLOWED_HOSTS = ['127.0.0.1']
 INSTALLED_APPS = [
     # app account
     'account',
-    'admin_soft.apps.AdminSoftDashboardConfig', 
     'crispy_forms',
     "crispy_bootstrap5",
     'django.contrib.admin',
@@ -204,4 +201,8 @@ EMAIL_HOST_PASSWORD=config("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL=config("DEFAULT_FROM_EMAIL")
 
 
+# Stripe paiement en ligne
 
+STRIPE_PUBLISHABLE_KEY = config("STRIPE_PUBLISHABLE_KEY ")
+STRIPE_SECRET_KEY =config("STRIPE_SECRET_KEY")
+STRIPE_API_VERSION = config("STRIPE_API_VERSION")

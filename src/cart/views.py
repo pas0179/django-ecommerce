@@ -1,16 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .cart import Cart
 from product.models import Product
-from django.contrib import messages
 
 from django.http import JsonResponse
+
 
 
 
 def cart_detail(request):
 	# Detail du panier
 	cart = Cart(request)
-	
+
 	return render(request, "cart/cart_detail.html", {"cart": cart})
 
 
@@ -82,6 +82,7 @@ def cart_delete(request):
 def cart_update(request):
 
 	cart = Cart(request)
+
 	if request.POST.get('action') == 'post':
 		product_id = int(request.POST.get('productid'))
 		product_qty = int(request.POST.get('productqty'))
