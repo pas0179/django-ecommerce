@@ -8,15 +8,24 @@ from .models import Profile
 # Class pour la création d'un nouveau user
 class UserRegistrationForm(forms.ModelForm):
 
-    password = forms.CharField(label='Mot de passe',
-        widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Repeter le mot de passe',
-        widget=forms.PasswordInput)
+    password = forms.CharField(label='',
+        widget=forms.PasswordInput(attrs={"class": 'form-control', 'placeholder': "Votre mot de passe"}))
+    password2 = forms.CharField(label='',
+        widget=forms.PasswordInput(attrs={"class": 'form-control', 'placeholder': "Confirmation de votre mot de passe"}))
 
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'email', 'last_name']
+        fields = ['username', 'email', 'first_name', 'last_name', 'password', 'password2']
+
+        labels = {'username': "", 'first_name': "", 'email': "", 'last_name': ""}
+
+        widgets = {
+            'username': forms.EmailInput(attrs={"class": 'form-control', 'placeholder': 'Votre adresse Email'}),
+            'email': forms.EmailInput(attrs={"class": 'form-control', 'placeholder': "Confirmation de votre adresse Email"}),
+            'first_name': forms.TextInput(attrs={"class": 'form-control', 'placeholder': "Votre Prénom"}),            
+            'last_name': forms.TextInput(attrs={"class": 'form-control', 'placeholder': "Votre Nom de famille"}),
+        }   
 
     def clean_password2(self):
         # Vérification que les mots de passes sont identique

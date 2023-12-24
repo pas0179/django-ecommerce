@@ -288,56 +288,14 @@ a:hover::before {
 /* register *************************************************************/
 #register {
     width: 100%;
+    margin-bottom: 40px;
     
 }
 #register .group {
     margin-bottom: 40px;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-
-}
-#register .group .block {
-    width: max-content;
-}
-#register .group .block .infos {
-    padding: 20px;
-}
-#register .group .block .form-register {
-    padding: 20px;
+    padding: 40px;
 }
 
-#register .group .block .form-register .button {
-    margin-top: 40px;
-    margin-bottom: 20px;
-    display: flex;
-    gap: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-}
-#register .group .block .form-register .form {
-    display: flex;
-}
-
-#register .group .block .form-register .form th, td {
-    font-size: 14px;
-    text-align: left;
-    padding: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    line-height: 1.6rem;
-}
-
-#register .group .block .form-register input {
-    border-radius: 4px;
-    padding: 4px 10px;
-    font-size: 14px;
-    border-style: none;
-    width: 220px;
-    margin-left: 10px;
-    margin-bottom: 5px;
-}
 
 /* Edit account **************************************************************/
 #edit-compte {

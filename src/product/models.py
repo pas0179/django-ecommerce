@@ -46,8 +46,18 @@ class Product(models.Model):
 		return self.name
 	
 	def view_stock(self):
-		return self.quantity
-	
+		return self.quantity	
+
+	def dropdown_list(self):
+		"""
+		Retourne un dictionnaire pour dropdown_list pour chaque produit
+		"""
+		quantity = self.view_stock()
+		dropdown = {}
+		for i in range(1, quantity + 1):
+			dropdown[str(i)] = i
+			i += 1
+		return dropdown	
 	
 
 	max_width = 800

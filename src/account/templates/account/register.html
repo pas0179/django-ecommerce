@@ -16,7 +16,7 @@
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white-50">
                     <h3 class="display-4 fw-bolder" style="font-size: 20px;">                            
-                        Création de votre compte                             
+                        Création de votre compte ...                            
                     </h3>
                 </div>
             </div>
@@ -29,48 +29,27 @@
                 <p>Merci, de bien vouloir vous enregistrer avec le formulaire ci-dessous:</p>
                 </div>            
             </div>
-            <div class="form-register">
-                <div>
-                    <form method="post">
-                        <table class="user">
-                            <tr>
-                                <th>Adresse email:</th>
-                                <td>{{ user_form.username }}</td>
-                            </tr>
+            <center>
+                    <div class="form-group" style="max-width: 60%;">
+                        <form action="" method="post">
+                           
+                            {% csrf_token %}
+    
+                            {{ user_form.as_p }}
+    
+                            <div class="btn-group">
+                              <div class="invalid">
+                                <a href="{% url 'home' %}" class="btn btn-secondary" style="height: 35px; width: 100px;">Annuler</a>
+                              </div>
+                              <div class="valid" style="margin-left: 40px;">
+                                <input class="btn btn-secondary" type="submit" value="Valider" style="height: 35px;width: 100px;">
+                              </div>
+                            </div>
+                        </form>
+                    </div>            
 
-                            <tr>
-                                <th>Confirmer email:</th>
-                                <td>{{ user_form.email }}</td>
-                            </tr>
-                            <tr>
-                                <th>Prénom:</th>
-                                <td>{{ user_form.first_name }}</td>
-                            </tr> 
-                            <tr>
-                                <th>Nom:</th>
-                                <td>{{ user_form.last_name }}</td>
-                            </tr>            
-                            <tr>
-                                <th>Mot de passe:</th>
-                                <td>{{ user_form.password }}</td>
-                            </tr>
-                            <tr>
-                                <th>Confirmer mot de passe:</th>
-                                <td>{{ user_form.password2 }}</td>
-                            </tr>
-                        </table>
-                        {% csrf_token %}
-                        <div class="button">
-                          <div class="invalid">
-                            <a href="{% url 'home' %}" class="btn btn-secondary" style="height: 35px; width: 100px;">Annuler</a>
-                          </div>
-                          <div class="valid">
-                            <input class="btn btn-secondary" type="submit" value="Valider" style="height: 35px;width: 100px;">
-                          </div>
-                        </div>
-                      </form>
-                </div>            
-            </div>
+            </center>
+            
         </div>
              
       

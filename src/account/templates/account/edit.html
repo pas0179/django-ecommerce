@@ -13,7 +13,7 @@
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white-50">            
             <h3 class="display-4 fw-bolder" style="font-size: 20px;">
-              Modifier votre compte ou <a href="{% url 'dashboard' %}#dashboard" style="color: white; font-size: 17px;">Retour</a>
+              Modifier votre compte ou <a href="{% url 'dashboard' %}#nav" style="color: white; font-size: 17px;">Retour</a>
             </h3>
         </div>
     </div>
@@ -98,7 +98,7 @@
       </div>      
       <div class="button">
         {% csrf_token %}
-        <a href="{% url 'dashboard' %}#dashboard" class="btn btn-secondary">Annuler</a>
+        <a href="{% url 'dashboard' %}#nav" class="btn btn-secondary">Annuler</a>
         <input type="submit" value="Valider" class="btn btn-secondary">
       </div>
     </form>

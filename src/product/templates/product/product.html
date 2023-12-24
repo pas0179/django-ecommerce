@@ -63,14 +63,14 @@
                                 <div class="col-md-4">Quantité:</div>
                                 <div class="col-md-2">
                                     <select class="form-select form-select-sm" id="qty-cart">
-                                        {% for val in stock %}
-                                        <option value="">{{ val }}</option>
+                                        {% for val in product.dropdown_list %}
+                                        <option value="{{val}}">{{ val }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
                             </div>
                             <br/><br/>
-                            <a href="{% url 'category' 'all' %}" class="btn btn-secondary">Retour Produits</a>
+                            <a href="{% url 'category' 'all' %}#nav" class="btn btn-secondary">Retour Produits</a>
                             <button type="button" value="{{ product.id }}" class="btn btn-secondary" id="add-cart">Ajouter Panier</button>
     
                         </center>

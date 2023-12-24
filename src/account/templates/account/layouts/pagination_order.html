@@ -1,0 +1,26 @@
+<nav aria-label="Page navigation example" id="box">
+    <ul class="pagination pagination-sm justify-content-center">              
+      {% if p_order.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{p_order.previous_page_number}}#nav" aria-label="Previous" id="previous_page">
+            précédent
+          </a>
+        </li>        
+      {% endif %}
+
+      <li class="page-item disabled"><a class="page-link" href="#!">{{ p_order.number }}</a></li>
+
+      {% if p_order.paginator.num_pages != p_order.number %}
+      <li class="page-item disabled"><a class="page-link" href="#!">sur</a></li>
+      <li class="page-item disabled"><a class="page-link" href="#!">{{ p_order.paginator.num_pages }}</a></li>
+      {% endif %}          
+
+      {% if p_order.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{p_order.next_page_number}}#nav" aria-label="Next" id="next_page">
+          suivant
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>

@@ -25,6 +25,9 @@ from order.models import Order, OrderItem
 from django.contrib.auth.models import User
 from account.models import Profile
 
+# class pour la Pagination
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 
 # Create your views here.
@@ -44,6 +47,25 @@ def dashboard(request, orders_id=None):
 		order = Order.objects.filter(user=user)
 		nb_order = order.count()
 
+		# Récup de la liste des commandes et filtrage dans une variable par 4 éléments
+		paginator = Paginator(Order.objects.filter(user=user), 4)
+
+		# Récup de la page courante
+		page_number = request.GET.get('page')
+
+		try:
+			# Récup de la page demandé dans une variable
+			p_order = paginator.page(page_number)
+			# p_order = p.get_page(page_number)
+		except PageNotAnInteger:
+			# Si problème récup de la page 1 dans la variable
+			p_order = paginator.page(1)
+		except EmptyPage:
+			# Si problème retourne la dernière page dans une variable
+			p_order = paginator.page(paginator.num_pages)
+
+		nb_pages = "a" * p_order.paginator.num_pages
+		
 		if orders_id:
 			orders = get_object_or_404(Order, id=orders_id)
 			order_item = OrderItem.objects.filter(order_id=orders_id)
@@ -52,8 +74,10 @@ def dashboard(request, orders_id=None):
 		return redirect("login")
 
 	context = {
-		"order": order,
+		# "order": order,
+		"p_order": p_order,
 		"orders": orders,
+		"nb_pages": nb_pages,
 		"order_item": order_item,
 		"nb_order": nb_order,
 		"user": user,
@@ -69,7 +93,7 @@ def login_user(request):
 		username = request.POST['username']
 		password = request.POST['password']
 		user = authenticate(request, username=username, password=password)
-		if user is not None:
+		if user is not None and user.is_active:
 			login(request, user)
 			messages.success(request, ("Vous êtes connecté ..."))
 			cart = Cart(request)
@@ -78,7 +102,10 @@ def login_user(request):
 			else:
 				return redirect("cart_detail")
 		else:
-			messages.error(request, ("Il y a eu une erreur avec le login ou mot de passe ...  merci de recommencer ..."))
+			messages.error(request, ("Connnexion impossible. Verifier que votre mot de passe \
+							ou adresse mail soit corrects ou votre compte n'est peut etre \
+							pas encore activé. Si c'est le cas, vérifier dans votre messagerie \
+							si vous avez reçu un mail d'activation de notre site. sinon ...  merci de recommencer ..."))
 			return redirect('login')
 
 	else:
@@ -189,7 +216,9 @@ def activateEmail(request, user, to_email):
         'domain': get_current_site(request).domain,
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
         'token': account_activation_token.make_token(user),
-        'protocol': 'https' if request.is_secure() else 'http',
+		# Une fois en production il faut utiliser la ligne ci-dessous
+        # 'protocol': 'https' if request.is_secure() else 'http',
+		'protocol': 'https',
     })
     email = EmailMessage(mail_subject, message, to=[to_email])
     if email.send():

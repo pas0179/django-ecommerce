@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .cart import Cart
 from product.models import Product
+from product.views import calcul_stock
 
 from django.http import JsonResponse
 

@@ -33,7 +33,7 @@
             </div>             
             <form class="d-flex" style="margin-bottom: 20px;">
     
-                <a href="{% url 'cart_detail' %}" class="btn btn-outline-dark"><i class="fa-solid fa-cart-shopping"></i>
+                <a href="{% url 'cart_detail' %}#nav" class="btn btn-outline-dark"><i class="fa-solid fa-cart-shopping"></i>
                                     Panier
                 {% with total_qty=cart|length %}
                 <span class="badge bg-dark text-white ms-1 rounded-pill" id="cart_quantity">
@@ -62,26 +62,26 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">catégories</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{% url 'category' 'all' %}#py-5">tous les produits</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category' 'all' %}#nav">tous les produits</a></li>
                             <li><hr class="dropdown-divider" /></li>
-                            <li><a class="dropdown-item" href="{% url 'category' 'deco-noel' %}#py-5">Déco-noel</a></li>
-                            <li><a class="dropdown-item" href="{% url 'category' 'boite-a-dents' %}#py-5">Boite à dents</a></li>
-                            <li><a class="dropdown-item" href="{% url 'category' 'couronne' %}#py-5">Couronne</a></li>
-                            <li><a class="dropdown-item" href="{% url 'category' 'marque-page' %}#py-5">Marque-page</a></li>
-                            <li><a class="dropdown-item" href="{% url 'category' 'porte-cle' %}#py-5">Porte-clé</a></li>
-                            <li><a class="dropdown-item" href="{% url 'category' 'porte-bijoux' %}#py-5">Porte-bijoux</a></li>   
-                            <li><a class="dropdown-item" href="{% url 'category' 'boule-frou-frou' %}#py-5">Boule frou-frou</a></li>                     
-                            <li><a class="dropdown-item" href="{% url 'category' 'divers' %}#py-5">Divers</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category' 'deco-noel' %}#nav">Déco-noel</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category' 'boite-a-dents' %}#nav">Boite à dents</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category' 'couronne' %}#nav">Couronne</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category' 'marque-page' %}#nav">Marque-page</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category' 'porte-cle' %}#nav">Porte-clé</a></li>
+                            <li><a class="dropdown-item" href="{% url 'category' 'porte-bijoux' %}#nav">Porte-bijoux</a></li>   
+                            <li><a class="dropdown-item" href="{% url 'category' 'boule-frou-frou' %}#nav">Boule frou-frou</a></li>                     
+                            <li><a class="dropdown-item" href="{% url 'category' 'divers' %}#nav">Divers</a></li>
                             
                         </ul>
                     </li>
                     {% if request.user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}#dashboard">compte</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}#nav">compte</a></li>
                         {% if cart %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'add_order' %}">commande-en-cours</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'cart_detail' %}#nav">panier</a></li>
                         {% endif %}
                     {% endif %}
-                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}#form-contact">contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}#nav">contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="">infos</a></li>
                     
                 </ul>

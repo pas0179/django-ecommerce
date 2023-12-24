@@ -81,18 +81,25 @@
             page courante: {{p_order.number}} <br/>
             nombre de page: {{p_order.paginator.num_pages}} <br/>
           -->
-            <!-- Pagination des commandes -->
-            {% include 'account/layouts/pagination_order.html' %}
-            <!-- Fin de la pagination des commandes -->
+
+            <nav aria-label="Page navigation example" id="box">
+              <ul class="pagination pagination-sm justify-content-center">              
+
+                {% for i in page_range %}                  
+                  <li class="page-item"><a id="btn-page" class="page-link" href="{{i}}">{{i}}</a></li>          
+                {% endfor %}                
+
+              </ul>
+            </nav>
 
             <h5> <a href="{% url 'dashboard' %}#nav">Vous avez {{ nb_order }} commandes</a></h5>
           {% else %}
             <h5>Vous n'avez pas de commande</h5>
           {% endif %}
         </div>        
-        <div class="list" style="font-size: 15px;"
+        <div id="order-list" class="list" style="font-size: 15px;"
           <ul>
-            {% for item in p_order %}
+            {% for item in first_page %}
             <li {% if orders_id == item.id %}class="selected"{% endif %}><a href="{{ item.get_absolute_url }}#dashboard">Commande N°: {{ item.id }}</a></li>
             <ul class="order">
               <li>Date: {{ item.created }} </li>
@@ -133,13 +140,36 @@
 
 <script>
   
-
-
-
-
-
-
-
+  $('#btn-page').click(function(event){
+		// preventing default actions
+		event.preventDefault();
+		var page_no = $(this).attr('href');
+		// ajax call
+			$.ajax({
+					type: "POST",
+					// define url name
+					url: "{% url 'dashboard' %}", 
+					data : {    
+					page_no : page_no, 
+					csrfmiddlewaretoken: '{{ csrf_token }}',
+				},
+				// handle a successful response
+				success: function (response) {
+					$('#order-list').html('')
+					$.each(response.results, function(i, val) {
+					 //append to post
+					$('#order-list').append(
+                        '<li><a>' + val.id + '</a></li>'
+                        '<li>' + val.created + '</li>'
+                        '<li>' + val.total_order + '</li>'
+                        )
+				   });
+				},
+				error: function () {
+					alert('Error Occured');
+				}
+			}); 
+	}); 
 
 
 </script>
