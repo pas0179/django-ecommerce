@@ -34,15 +34,12 @@ class Cart():
 		"""
 		Ajout d'un produit dans le panier
 		"""
-		prod = get_object_or_404(Product, name=str(product))
-		stock = prod.quantity
-
 		product_id = str(product.id)
 
 		if product_id in self.cart:
 			self.cart[product_id]['quantity'] = quantity
 		else:
-			self.cart[product_id] = {'price': str(product.price), 'quantity': quantity, 'stock': stock}
+			self.cart[product_id] = {'price': str(product.price), 'quantity': quantity}
 
 		self.save()
 

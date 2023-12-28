@@ -51,6 +51,7 @@ class Product(models.Model):
 	def dropdown_list(self):
 		"""
 		Retourne un dictionnaire pour dropdown_list pour chaque produit
+		avec seulement la quantité en stock.
 		"""
 		quantity = self.view_stock()
 		dropdown = {}

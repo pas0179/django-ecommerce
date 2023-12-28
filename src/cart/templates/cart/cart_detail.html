@@ -85,7 +85,7 @@
                                     {% for val in product.dropdown_list %}
                                       <option value="{{val}}">{{val}}</option>
                                     {% endfor %}
-                                    </select>
+                                </select>
                                 {% csrf_token %}
                                 <div class="" style="display: flex; gap: 30px; margin-left: 20px;">
                                     <a type="button" id="update-button" data-index="{{product.id}}" class="update-button text-decoration-none">Valider</a>
@@ -112,7 +112,7 @@
 // inserer les qunatité en stock dans le dropdown
 
 
-// Delete Item
+// Supprimer un produit
 $(document).on("click", ".delete-button", function (e) {
     e.preventDefault();
     var prodid = $(this).data("index");
@@ -145,7 +145,7 @@ $(document).on("click", ".delete-button", function (e) {
     });
 });
 
-// Update Item
+// Ajout quantité sur un produit
 $(document).on('click', '.update-button', function (e) {
     e.preventDefault();
     var prodid = $(this).data('index');

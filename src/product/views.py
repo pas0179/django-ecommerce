@@ -42,9 +42,5 @@ def product(request,pk):
 	calcul_stock()
 	product = Product.objects.get(id=pk)
 
-	# Création pour dropdown de la quantité en stock 
-	# exemple: 5 produits en stock -> 1, 2, 3, 4, 5
-	quantity = product.view_stock()
-
 	return render(request, 'product/product.html', {'product':product})
 

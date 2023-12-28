@@ -1,6 +1,8 @@
 from django.urls import path
 # Utilisation ddes vues personnalisé pour login et logout
-from .views import login_user, logout_user, dashboard, register, edit, activate
+from .views import login_user, logout_user, dashboard, register, \
+                edit, activate
+
 
 # Vue auto de django.auth
 from django.contrib.auth.views import (
@@ -21,9 +23,7 @@ urlpatterns = [
     path("register/", register, name="register"),
     path("edit/", edit, name="edit"),
     # url redirige si authentification sur login
-    path('activate/<uidb64>/<token>', activate, name='activate'),
-
-    
+    path('activate/<uidb64>/<token>', activate, name='activate'),   
 
     # integration des vues django.auth pour modifié et reset du mot de passe
     # change password urls

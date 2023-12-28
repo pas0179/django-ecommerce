@@ -2,87 +2,224 @@
 
 {% load static %}
 
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+{% endblock css %}
+
 {% block content %}
 
 <!-- Header-->
-        <header class="bg-dark py-1">
-            <div class="container px-3 px-lg-3 my-3">
-                <div class="text-center text-white">
-                    <p class="lead fw-normal text-white-50 mb-0">Modifier votre Profile ...</p>
-                </div>
-            </div>
-        </header>
-
-        <div class="container" style="margin-bottom: 60px;">
-            <p>Profile: <span>{{profile.genre}}</span>{{me.first_name}} {{me.last_name}}</p>
-            <form class="row g-5 needs-validation" method="POST" action="{% url 'edit_profil' %}">
-                <div class="col-md-2">
-                    <label for="validationCustom04" class="form-label">Genre</label>
-                    {{ genre_form }}
-                </div>
-
-                <div class="col-md-2">
-                  <label for="validationCustom01" class="form-label">Date de naissance</label>
-                  <input type="text" class="form-control" id="validationCustom01" value="{{ profile.date_of_birth }}">
-                </div>
-                <div class="col-md-4">
-                    <label for="validationCustom01" class="form-label">Adresse principale</label>
-                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.address_primary }}" required>
-                </div>
-                <div class="col-md-4">
-                    <label for="validationCustom01" class="form-label">Complement adresse</label>
-                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.complement_address_primary }}">
-                </div>
-                <div class="col-md-2">
-                    <label for="validationCustom01" class="form-label">Code postal</label>
-                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.postal_code_primary }}" required>
-                </div>
-                <div class="col-md-3">
-                    <label for="validationCustom01" class="form-label">Ville</label>
-                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.city_primary }}" required>
-                </div>
-                <div class="col-md-2">
-                    <label for="validationCustom01" class="form-label">N° Mobile</label>
-                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.phoneNumber1 }}" required>
-                </div>
-                <div class="col-md-2">
-                    <label for="validationCustom01" class="form-label">N° Fixe</label>
-                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.phoneNumber2 }}">
-                </div>
-
-                <div class="col-md-4">
-                    <label for="validationCustom01" class="form-label">Adresse Secondaire</label>
-                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.address_secondery }}" required>
-                </div>
-                <div class="col-md-4">
-                    <label for="validationCustom01" class="form-label">Complement adresse</label>
-                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.complement_adress_secondary }}">
-                </div>
-                <div class="col-md-2">
-                    <label for="validationCustom01" class="form-label">Code postal</label>
-                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.postal_code_secondery }}" required>
-                </div>
-                <div class="col-md-3">
-                    <label for="validationCustom01" class="form-label">Ville</label>
-                    <input type="text" class="form-control" id="validationCustom01" value="{{ profile.city_secondery }}" required>
-                </div>
-                
-                {% csrf_token %}
-                <div class="col-12">
-                  <button class="btn btn-secondary" type="submit">Valider Changement</button>
-                </div>
-              </form>
-
-
-
-
-
-
-
-
-
-
-        	
+<header class="bg-dark py-1">
+    <div class="container px-3 px-lg-3 my-3">
+        <div class="text-center text-white">
+            <p class="lead fw-normal text-white-50 mb-0">Modifier votre Profile ...</p>
         </div>
+    </div>
+</header>
 
-{% endblock %}
+<div id="edit">
+    <div class="container">
+        <div class="block">
+            <form class="row g-5 needs-validation" method="POST" action="{% url 'edit' %}" enctype="multipart/form-data">
+                <h5>Nom, Prénom, date de naissance, genre ...</h5>
+                <div class="user">  
+                    <div class="group" style="width: 50px;">
+                        {{profile_form.genre }}
+                    </div>    
+                    <div class="group" style="max-width: 200px;">
+                        {{user_form.first_name}}
+                    </div>
+                    <div class="group" style="max-width: 200px;">
+                        {{user_form.last_name}}
+                    </div>
+                    <div class="group" style="max-width: 150px;">
+                        {{profile_form.date_of_birth}}
+                    </div>                   
+                </div>
+                <h5>N° de téléphone ...</h5>
+                <div class="phone">
+                    <div class="group" style="max-width: 200px;">
+                        {{profile_form.phoneNumber1}}
+                    </div>
+                    <div class="group" style="max-width: 200px;">
+                        {{profile_form.phoneNumber2}}
+                    </div>                      
+                </div>
+                <h5>Adresse principale ...</h5>
+                <div class="primary">
+                    <div class="group" style="max-width: 400px; min-width: 250px">
+                        {{profile_form.address_primary}}
+                    </div>
+                    <div class="group" style="max-width: 400px; min-width: 250px;">
+                        {{profile_form.complement_adress_primary}}
+                    </div>
+                    <div class="group" style="max-width: 150px;">
+                        {{profile_form.postal_code_primary}}
+                    </div>
+                    <div class="group" style="max-width: 250px;">
+                        {% if profile.city_primary is None %}
+                            <select name="ville" id="codeprimary" style="width: 250px; height: 36px; border-radius: 7px;">
+                                <option selected value=""></option>                 
+                            </select>
+                        {% else %}
+                            <select name="ville" id="codeprimary" style="width: 250px; height: 36px; border-radius: 7px;">
+                                <option selected value="">{{profile.city_primary}}</option>                 
+                            </select>
+                        {% endif %}
+                    </div>
+                    <div class="group" style="max-width: 250px;">
+                        {{profile_form.city_primary}}
+                    </div>
+                
+                </div>
+                <h5>Adresse secondaire ...</h5>
+                <div class="secondary">
+                    <div class="group" style="max-width: 400px; min-width: 250px">
+                        {{profile_form.address_secondery}}
+                    </div>
+                    <div class="group" style="max-width: 400px; min-width: 250px;">
+                        {{profile_form.complement_adress_secondary}}
+                    </div>
+                    <div class="group" style="max-width: 150px;">
+                        {{profile_form.postal_code_secondery}}
+                    </div>
+                    <div class="group" style="max-width: 250px;">
+                        {% if profile.city_secondery is None %}
+                            <select name="ville" id="codesecondery" style="width: 250px; height: 36px; border-radius: 7px;">
+                                <option selected value=""></option>                 
+                            </select>
+                        {% else %}
+                            <select name="ville" id="codesecondery" style="width: 250px; height: 36px; border-radius: 7px;">
+                                <option selected value="">{{profile.city_secondery}}</option>                 
+                            </select>
+                        {% endif %}                         
+                    </div>
+                    <div class="group" style="max-width: 250px;">
+                        {{profile_form.city_secondery}}
+                    </div>
+                </div>
+
+                {% csrf_token %}
+    
+                <div class="btn-group" style="justify-content: center; margin-bottom: 40px;">
+                    <div class="invalid">
+                      <a href="{% url 'dashboard' %}" class="btn btn-secondary" style="height: 35px; width: 100px;">Annuler</a>
+                    </div>
+                    <div class="valid" style="margin-left: 40px;">
+                      <input class="btn btn-secondary" id="valid"  type="submit" value="Valider" style="height: 35px;width: 100px;">
+                    </div>
+                  </div>
+              </form>
+            </div>    
+    </div>
+</div>
+
+
+<script>
+
+// script async pour récup ville depuis code postal
+function getCountry(codepostal, nb) {
+    // Ajax request sur api, 
+    let promise1 = fetch('https://apicarto.ign.fr/api/codes-postaux/communes/' + codepostal)
+
+    let promise2 = promise1.then(function(response) {
+        // console.log(response);        
+        return response.json();
+    });
+
+    promise2.then(function(data) {
+        // console.log(data);
+        var len = data.length;
+        // console.log(len);
+
+        if (nb === "1") {
+            // dès que promise2 est a jour alors on peut integrer les résultats dans
+            // le select ville
+            $("#codeprimary").empty();
+            $("#codeprimary").append("<option selected>" +""+"</option>");
+            for( var i = 0; i<len; i++){
+                var name = data[i]['nomCommune'];            
+                $("#codeprimary").append("<option value=''>"+name+"</option>");
+
+            }
+        }
+
+        if (nb === "2") {
+            // dès que promise2 est a jour alors on peut integrer les résultats dans
+            // le select ville
+            $("#codesecondery").empty();
+            $("#codesecondery").append("<option selected>" +""+"</option>");
+            for( var i = 0; i<len; i++){
+                var name = data[i]['nomCommune'];            
+                $("#codesecondery").append("<option value=''>"+name+"</option>");
+
+            }
+        }
+
+        
+    })
+}
+
+// fonction pour afficher le résultat codepostal/ville dans le select
+// depuis la fonction getCountry en fetch async
+$(document).ready(function() {
+    $('#codePostal_primary').change(function(){
+        var codepostal = $(this).val();
+        const nb = "1";
+
+        if(codepostal){
+            getCountry(codepostal, nb);
+        } else {
+            $("#codeprimary").empty();
+            $('#city_primary').val("");
+        }
+
+    })
+})
+
+$(document).on('click', '#codeprimary', function(e) {
+    e.preventDefault();
+    var city_primary = $('#codeprimary option:selected').text();
+    // console.log(city)
+    if (city_primary) {
+        $('#city_primary').empty();
+        $('#city_primary').val(city_primary);
+    } else {
+        $('#city_primary').empty();
+    }
+})
+
+// fonction pour afficher le résultat codepostal/ville dans le select
+// depuis la fonction getCountry en fetch async
+$(document).ready(function() {
+    $('#codePostal_secondery').change(function(){
+        var codepostal = $(this).val();
+        const nb = "2";
+
+        if(codepostal){
+            getCountry(codepostal, nb);
+        } else {
+            $("#codesecondery").empty();
+            $('#city_secondery').val("");
+        };
+
+    })
+})
+
+$(document).on('click', '#codesecondery', function(e) {
+    e.preventDefault();
+    var city_secondery = $('#codesecondery option:selected').text();
+    // console.log(city)
+    if (city_secondery) {
+        $('#city_secondery').empty();
+        $('#city_secondery').val(city_secondery);
+    } else {
+        $('#city_secondery').empty();
+    };
+})
+
+
+
+</script>
+
+{% endblock content %}

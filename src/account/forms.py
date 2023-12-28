@@ -48,11 +48,15 @@ class UserRegistrationForm(forms.ModelForm):
 class UserEditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'email']
+        fields = ['first_name', 'last_name']
         labels = {
-            "first_name": "Prénom",
-            "last_name": "Nom de famille",
-            "email": "Adresse Email",
+            "first_name": "",
+            "last_name": "",
+
+        }
+        widgets = {
+            'first_name': forms.TextInput(attrs={"class": 'form-control', 'placeholder': "Votre Prénom"}),            
+            'last_name': forms.TextInput(attrs={"class": 'form-control', 'placeholder': "Votre Nom de famille"}),
         }
 
 
@@ -75,16 +79,30 @@ class ProfileEditForm(forms.ModelForm):
             "city_secondery",            
         ]
         labels = {
-            "genre": "genre",
-            "date_of_birth": "Date de naissance",
-            "address_primary": "Adresse principale",
-            "complement_adress_primary": "Complement d'adresse",
-            "postal_code_primary": "Code Postal",
-            "city_primary": "Ville",
-            "phoneNumber1": "N° Mobile",
-            "phoneNumber2": "N° Fixe",
-            "address_secondery": "Adresse secondaire",
-            "complement_adress_secondary": "Complement d'adresse",
-            "postal_code_secondery": "Code Postal",
-            "city_secondery": "Ville",
+            "genre": "",
+            "date_of_birth": "",
+            "address_primary": "",
+            "complement_adress_primary": "",
+            "postal_code_primary": "",
+            "city_primary": "",
+            "phoneNumber1": "",
+            "phoneNumber2": "",
+            "address_secondery": "",
+            "complement_adress_secondary": "",
+            "postal_code_secondery": "",
+            "city_secondery": "",
         }
+        widgets = {
+             'date_of_birth': forms.DateInput(attrs={"class": 'form-control', 'placeholder': "Date de naissance"}),
+             'address_primary': forms.TextInput(attrs={"class": 'form-control', 'placeholder': "Adresse principale"}),
+             'complement_adress_primary': forms.TextInput(attrs={"class": 'form-control', 'placeholder': "Complement d'adresse"}),
+             'postal_code_primary': forms.TextInput(attrs={"class": 'form-control', 'placeholder': "Code Postal", "id": "codePostal_primary"}),
+             'city_primary': forms.TextInput(attrs={"class": 'form-control', 'placeholder': "Ville", "name": "city_primary", "id": "city_primary", "hidden": "true"}),
+             'phoneNumber1': forms.TextInput(attrs={"class": 'form-control', 'placeholder': "N° Mobile"}),
+             'phoneNumber2': forms.TextInput(attrs={"class": 'form-control', 'placeholder': "N° Fixe"}),
+             'address_secondery': forms.TextInput(attrs={"class": 'form-control', 'placeholder': "Adresse secondaire"}),
+             'complement_adress_secondary': forms.TextInput(attrs={"class": 'form-control', 'placeholder': "Complement d'adresse"}),
+             'postal_code_secondery': forms.TextInput(attrs={"class": 'form-control', 'placeholder': "Code Postal", "id": "codePostal_secondery"}),
+             'city_secondery': forms.TextInput(attrs={"class": 'form-control', "name": "city_secondery", "id": "city_secondery", "hidden": "true"}),
+        }
+

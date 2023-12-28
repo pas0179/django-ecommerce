@@ -30,6 +30,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 
+
 # Create your views here.
 @login_required
 def dashboard(request, orders_id=None):
@@ -174,8 +175,9 @@ def register(request):
 # Formulaire de modification du user et profile
 @login_required
 def edit(request):
+
 	if request.method == "POST":
-		# Modif 'first_name', 'last_name', 'email'
+		# Modif 'first_name', 'last_name'
 		user_form = UserEditForm(instance=request.user, data=request.POST)
 
 		# Modif genre, date_of_birth, address_primary, postal_code_primary, city_primary,
@@ -187,8 +189,9 @@ def edit(request):
 		if user_form.is_valid() and profile_form.is_valid():
 			user_form.save()
 			profile_form.save()
+
 			messages.success(request, "Vos informations ont été sauvegardées avec succes ...")
-			return redirect('home')
+			return redirect('dashboard')
 		
 		else:
 			messages.error(request, 'Un problème est survenu, vos données n\'ont pas été enregistrées.\
@@ -198,13 +201,16 @@ def edit(request):
 	else:
 		user_form = UserEditForm(instance=request.user)
 		profile_form = ProfileEditForm(instance=request.user.profile)
+		profile = get_object_or_404(Profile, user=request.user)
 
 	context = {
 		"user_form": user_form,
 		"profile_form": profile_form,
+		"profile": profile,
 		}
 
-	return render(request, "account/edit.html", context)
+	return render(request, "account/edit_profile.html", context)
+
 
 
 
@@ -248,3 +254,6 @@ def activate(request, uidb64, token):
         messages.error(request, 'Le lien d\'activation est invalide')
 
     return redirect('home')
+
+
+

@@ -298,57 +298,66 @@ a:hover::before {
 
 
 /* Edit account **************************************************************/
-#edit-compte {
+#edit {
+    width: 100%;
+}
+#edit .container {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 20px;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
-    height: max-content;
-    margin-bottom: 50px;
+    text-align: center;
 }
-#edit-compte .group {
-    width: 100%;
+#edit .container .block {
+    padding: 0px;
+    margin: 0px;
 }
-
-
-#edit-compte .group .block {
-    width: 90%;
-    padding: 40px;
+#edit .container .block form {
+    display: flex;
+    background-color: #d8c5a3;
+    border-radius: 10px;
+    padding: 0px;
+    margin: 0px;
+}
+#edit .container .block form .user {
     display: flex;
     flex-wrap: wrap;
-    font-size: 15px;
-    justify-content: space-around;
-}
-#edit-compte .group .block h2 {
-    font-size: 15px;
-    font-weight: 600;
-}
-#edit-compte .group .block .gauche {
-    width: max-content;
-    height: max-content;
-    padding: 10px;
-}
-#edit-compte .group .block tr, th, td {
-    padding: 5px 5px 15px 5px;
-}
-#edit-compte .group .block input {
-    border-radius: 4px;
-    padding: 2px 5px;
-    font-size: 15px;
-    border-style: none;
-    width: 220px;
-    background-color: white;
-}
-#edit-compte .group .block .droite {
-    width: max-content;
-    height: max-content;
-    padding: 10px;
-}
-#edit-compte .group .button {
-    width: 100%;
+    gap: 40px;
+    margin: 0px;
+    padding: 0px;
     justify-content: center;
-    display: flex;
-    gap: 50px;
+    align-items: center;
 }
+#edit .container .block form .phone {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+}
+
+#edit .container .block form .primary {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+}
+
+#edit .container .block form .secondary {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+}
+
 
 /* Password change ***********************************************************/
 #pass-change {
