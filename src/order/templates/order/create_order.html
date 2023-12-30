@@ -86,11 +86,10 @@
           </div>                
           <div class="but" style="margin-top: 20px; display: flex; justify-content: center;">
               <form method="post">
+                {% csrf_token %}
                   <p style="font-size: 15px;">
-                      <input type="submit" class="btn btn-secondary" value="Reglement" style="font-size: 15px;">
-                      
-                  </p>
-                  {% csrf_token %}
+                      <input type="submit" class="btn btn-secondary" value="Reglement" style="font-size: 15px;">                      
+                  </p>                  
               </form>              
           </div>        
         </div>

@@ -1,0 +1,65 @@
+{% load static %}
+
+<html>
+    <body>
+        <div class="nav-pdf">
+            <img src="{% static 'assets/logo.jpg' %}" alt="" style="width: 300px; margin-right: 50px;">
+            <div class="head-right">
+                <strong>SANNCHA</strong> <br>        
+                Stéphanie Pruvost <br>
+                107, impasse des bouvreuils <br>
+                13370 Mallemort <br>
+
+            </div>
+            
+        </div>
+
+        <p>
+            Commande N° {{order.id}} <br/>
+            <span>
+                Date: {{order.created|date:"d M Y"}}
+            </span>
+        </p>
+        <h3>Client:</h3>        
+        <p>
+            {% for item in user %}
+                {{ item.first_name }} {{ item.last_name }}<br>
+                {{ item.username }}<br/>
+            {% endfor %}
+            {% for item in profile %}
+                {{ item.address_primary }}<br>
+                {{ item.postal_code_primary }} {{ item.city_primary }}
+            {% endfor %}
+        </p>
+
+        <h3>Produits</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Désignation</th>
+                    <th class="num">Prix</th>
+                    <th class="num">Quantité</th>
+                    <th class="num">Total</th>
+                </tr>
+            </thead>
+
+        <tbody>
+            {% for item in order.items.all %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td class="num">{{ item.price }} €</td>
+                <td class="num">{{ item.quantity }}</td>
+                <td class="num">{{ item.get_cost }} €</td>
+            </tr>
+            {% endfor %}
+            <tr class="total">
+                <td colspan="3">Total</td>
+                <td class="num">{{ order.total_order }} €</td>
+            </tr>
+        </tbody>
+        </table>
+        <span class="{% if order.paid_status %}paid{% else %}pending{% endif %}">
+            {% if order.paid_status %}Payer{% else %}Non reglé{% endif %}
+        </span>
+    </body>
+</html>

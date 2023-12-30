@@ -2,7 +2,7 @@ from .models import Product, StockProduct
 
 
 def calcul_stock():
-    products = Product.objects.filter(available=True)
+    products = Product.objects.all()
 
     lst_prod = []
     for val in products.values():
@@ -16,3 +16,12 @@ def calcul_stock():
         products.filter(id=val[0]).update(quantity=val[1])
     
     
+    for val in products.values():
+        """
+        Si la quantité est a 0 alors le produit n'est plus disponible
+        """
+
+        if val["quantity"] == 0:           
+            products.filter(id=val["id"]).update(available=False)
+        else:
+            products.filter(id=val["id"]).update(available=True)

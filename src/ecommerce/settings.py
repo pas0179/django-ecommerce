@@ -31,7 +31,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG")
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -57,8 +57,10 @@ INSTALLED_APPS = [
     'contact',
     # app cart
     'cart', 
-    # app order,
+    # app order
     'order',
+    # app payment
+    'payment',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -148,6 +150,8 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = ['static/']
 
+STATIC_ROOT = BASE_DIR / 'static_files'
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
@@ -206,3 +210,7 @@ DEFAULT_FROM_EMAIL=config("DEFAULT_FROM_EMAIL")
 STRIPE_PUBLISHABLE_KEY = config("STRIPE_PUBLISHABLE_KEY ")
 STRIPE_SECRET_KEY =config("STRIPE_SECRET_KEY")
 STRIPE_API_VERSION = config("STRIPE_API_VERSION")
+
+# Webhook stripe: permet de récupérer l'info sur le paiement: payer ou refusé
+# A récupérer sur stripe dans fichier de config webhook, endpoint_secret = ''
+STRIPE_WEBHOOK_SECRET=config("STRIPE_WEBHOOK_SECRET")
