@@ -5,46 +5,46 @@
 {% block content %}
 
 <!-- Header-->
-        <header class="bg-dark py-1">
-            <div class="container px-3 px-lg-3 my-3">
-                <div class="text-center text-white">
-                    <h1 class="display-10 fw-bolder">Se Connecter</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">Connexion a votre compte ...</p>
-                </div>
-            </div>
-        </header>
-
-        <div class="container" style="margin-bottom: 60px;">
-        	<div class="row">
-        		<center>
-        			<div class="col-5">
-        				<br/><br/>
-                        <form method="POST" action="{% url 'login' %}">
-                            {% csrf_token %}
-                            
-                        <div class="mb-3">                            
-                            <input type="text" class="form-control" name="username" placeholder="Entrer votre nom d'utilisateur">
-                            
-                        </div>
-                        <div class="mb-3">                            
-                            <input type="password" class="form-control" name="password" placeholder="Entrer votre mot de passe">
-                        </div>
-                        <br/><br/>
-                        <button type="submit" class="btn btn-secondary">Connexion</button>
-                        </form>
-
-        			</div>
-                    <br><br>
-                    <p>
-                        Si vous n'avez pas de compte <a href="{% url 'register' %}#register">Créer-votre-compte</a>.
-                    </p>
-                    <p>
-                        <a href='{% url "password_reset" %}#reset-mdp'>
-                            Mot de passe oublié ?
-                        </a>
-                    </p>
-        		</center>
-        	</div>
+<header class="bg-dark py-1">
+    <div class="container px-3 px-lg-3 my-3">
+        <div class="text-center text-white">
+            <h1 class="display-10 fw-bolder">Se Connecter</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Connexion a votre compte ...</p>
         </div>
+    </div>
+</header>
+
+<div class="container" style="margin-bottom: 60px;">
+    <div class="row">
+        <center>
+            <div class="col-5">
+                <br/><br/>
+                <form method="POST" action="{% url 'login' %}">
+                    
+                    <div class="mb-3">                            
+                        <input type="text" class="form-control" name="username" placeholder="Entrer votre nom d'utilisateur">
+                        
+                    </div>
+                    <div class="mb-3">                            
+                        <input type="password" class="form-control" name="password" placeholder="Entrer votre mot de passe">
+                    </div>
+                    <br/><br/>
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-secondary">Connexion</button>
+                </form>
+
+            </div>
+            <br><br>
+            <p>
+                Si vous n'avez pas de compte <a href="{% url 'register' %}#register">Créer-votre-compte</a>.
+            </p>
+            <p>
+                <a href='{% url "password_reset" %}#reset-mdp'>
+                    Mot de passe oublié ?
+                </a>
+            </p>
+        </center>
+    </div>
+</div>
 
 {% endblock %}

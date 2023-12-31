@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Product, Category
-from .stock import calcul_stock
 
 # Create your views here.
 
@@ -39,7 +38,7 @@ def category(request, slug):
 	
 
 def product(request,pk):
-	calcul_stock()
+	# calcul_stock_product(pk)
 	product = Product.objects.get(id=pk)
 
 	return render(request, 'product/product.html', {'product':product})

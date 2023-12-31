@@ -10,9 +10,9 @@ Order {{ order.id }} {{ block.super }}
 
  <div class="breadcrumbs">
     <a href="{% url "admin:index" %}">Home</a> &rsaquo;
-    <a href="{% url "admin:order_order_changelist" %}">Orders</a>
+    <a href="{% url "admin:order_order_changelist" %}">Commandes</a>
     &rsaquo;
-    <a href="{% url "admin:order_order_change" order.id %}">Order {{ order.id}}</a>
+    <a href="{% url "admin:order_order_change" order.id %}">Commande n° {{ order.id}}</a>
     &rsaquo; Detail
  </div>
 
@@ -20,11 +20,11 @@ Order {{ order.id }} {{ block.super }}
 
 {% block content %}
     <div class="module">
-        <h1>Order {{ order.id }}</h1>
+        <h1>Commande n° {{ order.id }}</h1>
         <ul class="object-tools">
             <li>
                 <a href="#" onclick="window.print();">
-                Print order
+                Imprimer Commande
                 </a>
             </li>
         </ul>

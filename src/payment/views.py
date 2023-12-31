@@ -4,6 +4,7 @@ from decimal import Decimal
 
 from order.models import Order
 from product.models import StockProduct, Product
+from product.stock import calcul_stock_product
 
 import stripe
 
@@ -73,6 +74,8 @@ def payment_completed(request):
     # Récup de l'objet order avec son id
     order = get_object_or_404(Order, id=order_id)
 
+    # Une fois le reglement accepté on sort la quantité vendu pour chaque produit
+    # dans stockproduct et on lance la fonction de calcul du stock pour ce(s) produit(s)
     for item in order.items.all():
         product_name = get_object_or_404(Product, name=item.product.name)
         if product_name:
@@ -81,6 +84,9 @@ def payment_completed(request):
                                         # Sortie de stock du produit
                                         quantity_out=item.quantity,
                                         )
+        
+            # Envoi le N° du produit pour recalculé son stock
+            calcul_stock_product(product_name.id)
 
     return render(request, 'payment/completed.html')
 

@@ -8,13 +8,9 @@ from account.models import Profile
 from .models import OrderItem, Order
 from cart.cart import Cart
 from django.contrib.auth.models import User
-from django.contrib import messages
 from account.models import Profile
-from product.models import StockProduct
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-
-from .task import order_created
 
 # paquets nécessaire pour le pdf envoyer après le reglement
 from django.http import HttpResponse
@@ -44,17 +40,8 @@ def add_order(request):
                                     quantity=item['quantity'],
                                     )
                 
-            # Ajouter la quantité vendue dans la gestion du stock
-            # StockProduct.objects.create(name_product=item['product'],
-                                        # Sortie de stock du produit
-                                        # quantity_out=item['quantity'],
-                                        # )
         # Vide le panier
         cart.clear()
-
-        # Lancement d'une tache insynchrone pour l'envoi d'un mail
-        # au client pour la commande
-        order_created.delay(order.id, user.first_name, user.username)
 
         # Ajoute le N° de commande dans la session
         request.session['order_id'] = order.id
@@ -119,8 +106,6 @@ def admin_order_pdf(request, order_id):
                     presentational_hints=True)
     
     return response
-
-
 
 
         

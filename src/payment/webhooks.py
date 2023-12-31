@@ -8,6 +8,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from order.models import Order
+from order.task import payment_completed
 
 
 @csrf_exempt
@@ -53,6 +54,8 @@ def stripe_webhooks(request):
             order.paid_status = True
             # Sauvegarde de order dans la base
             order.save()
+            # Lancement task pour envoyer la facture par mail
+            payment_completed.delay(order.id)
     
     return HttpResponse(status=200)
 

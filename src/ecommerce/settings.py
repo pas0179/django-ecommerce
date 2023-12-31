@@ -31,8 +31,12 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG")
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '4239-2a02-8440-c127-a2be-9894-d3f7-1689-d0f8.ngrok-free.app']
+ALLOWED_HOSTS = ["*"]
 
+# Sans ce paramètre le cookie reste actif pendant 1 an et provoque
+# une erreur de csrf_token dans les formulaire sur certain navigateur.
+CSRF_COOKIE_AGE = None
 
 # Application definition
 
